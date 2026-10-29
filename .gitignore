@@ -1,0 +1,18 @@
+# environment and tooling
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.env
+.claude/
+
+# rebuildable indexes and caches
+data/chroma/
+data/chroma_pred/
+data/transform_cache.json
+
+# local state: chat sessions and hand-off tickets hold real questions
+data/sessions/
+data/escalations/
+results/*/escalations/
