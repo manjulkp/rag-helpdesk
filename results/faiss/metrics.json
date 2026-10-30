@@ -1,0 +1,28 @@
+{
+  "unit": {
+    "same_set": 64,
+    "same_order": 64,
+    "identity_max_err": 6.556510925292969e-07
+  },
+  "cosine": {
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10,
+    "share_top10_inflated": 0.161,
+    "share_top10_shrunk": 0.039
+  },
+  "inner product": {
+    "R@8": 0.6,
+    "ansR@20": 0.8,
+    "n": 10,
+    "share_top10_inflated": 0.948,
+    "share_top10_shrunk": 0.0
+  },
+  "L2": {
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10,
+    "share_top10_inflated": 0.013,
+    "share_top10_shrunk": 0.266
+  }
+}

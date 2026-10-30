@@ -1,0 +1,98 @@
+[
+  {
+    "id": "concept-01",
+    "type": "concept",
+    "question": "What synthetic commodities does the research desk cover, and what period does its policy use?",
+    "expected": [{"repo": "research-desk", "path": "README.md"}]
+  },
+  {
+    "id": "concept-02",
+    "type": "concept",
+    "question": "How does the research policy turn the 10-day trend and news score into a LONG, SHORT, or NO_TRADE recommendation?",
+    "expected": [{"repo": "research-desk", "path": "data/policy.md"}]
+  },
+  {
+    "id": "concept-03",
+    "type": "concept",
+    "question": "Which parts of a proposed trade decision are enforced by Python rather than trusted to the agents?",
+    "expected": [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"}]
+  },
+  {
+    "id": "concept-04",
+    "type": "concept",
+    "question": "When live market data is enabled, which scenario fields may change and which risk limits remain fixed?",
+    "expected": [{"repo": "two-agent-trader-riskmanger", "path": "README.md"}]
+  },
+  {
+    "id": "test-01",
+    "type": "test",
+    "question": "Which research-desk tests verify the fixed price calculations, news scores, and resulting recommendations?",
+    "expected": [{"repo": "research-desk", "path": "tests/test_tools.py"}]
+  },
+  {
+    "id": "test-02",
+    "type": "test",
+    "question": "Where are repeated tool-call limits and invalid finish outputs tested in the research agent loop?",
+    "expected": [{"repo": "research-desk", "path": "tests/test_loop.py"}]
+  },
+  {
+    "id": "test-03",
+    "type": "test",
+    "question": "Which tests reject a missing stop-loss, a wrong-side stop, an oversized trade, or an excessive loss?",
+    "expected": [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py"}]
+  },
+  {
+    "id": "identifier-01",
+    "type": "identifier",
+    "question": "Which ticker identifiers are used in the research-desk tests for gold, Brent, and natural gas?",
+    "expected": [{"repo": "research-desk", "path": "tests/test_tools.py"}]
+  },
+  {
+    "id": "multi-01",
+    "type": "multi",
+    "question": "Find the research desk's evaluation protocol and its project overview, including the question set and evaluation modes.",
+    "expected": [
+      {"repo": "research-desk", "path": "eval/WRITEUP.md"},
+      {"repo": "research-desk", "path": "README.md"}
+    ]
+  },
+  {
+    "id": "multi-02",
+    "type": "multi",
+    "question": "Find both the trade desk's risk-rule specification and its tests for stop-loss and position-limit checks.",
+    "expected": [
+      {"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"},
+      {"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py"}
+    ]
+  },
+  {
+    "id": "negative-01",
+    "type": "negative",
+    "question": "What is the Kubernetes namespace used by the mobile banking production cluster?",
+    "expected": []
+  },
+  {
+    "id": "negative-02",
+    "type": "negative",
+    "question": "Which employee approved the confidential payroll transfer?",
+    "expected": []
+  },
+  {
+    "id": "negative-03",
+    "type": "negative",
+    "question": "What is the password for the external vendor account?",
+    "expected": []
+  },
+  {
+    "id": "negative-04",
+    "type": "negative",
+    "question": "How do I configure a household smart thermostat?",
+    "expected": []
+  },
+  {
+    "id": "negative-05",
+    "type": "negative",
+    "question": "What was the exact closing price of a random stock on a date not covered by these projects?",
+    "expected": []
+  }
+]

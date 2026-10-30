@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helpdesk RAG</title>
+<style>
+:root {
+  --bg: #fbfaf8; --surface: #ffffff; --text: #1d1d1b; --muted: #5f5e59; --line: #e3e1dc;
+  --accent: #1f5f8b; --accent-soft: #e6eff6; --good: #2d6a3e; --good-soft: #e5f1e8;
+  --warn: #8a5a00; --warn-soft: #f8eedb; --bad: #9b2c2c; --bad-soft: #f7e3e3;
+  --code: #f2f0ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161615; --surface: #1f1f1d; --text: #ecebe7; --muted: #a6a49d; --line: #34332f;
+    --accent: #7db4dc; --accent-soft: #1d2d3a; --good: #8fcf9f; --good-soft: #1c2e21;
+    --warn: #e6b65c; --warn-soft: #33291a; --bad: #e79b9b; --bad-soft: #3a2121; --code: #2a2926;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161615; --surface: #1f1f1d; --text: #ecebe7; --muted: #a6a49d; --line: #34332f;
+  --accent: #7db4dc; --accent-soft: #1d2d3a; --good: #8fcf9f; --good-soft: #1c2e21;
+  --warn: #e6b65c; --warn-soft: #33291a; --bad: #e79b9b; --bad-soft: #3a2121; --code: #2a2926;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 980px; margin: 0 auto; padding: 40px 16px 80px; }
+h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 1.35rem; margin: 48px 0 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+h3 { font-size: 1.05rem; margin: 24px 0 8px; }
+p, li { color: var(--text); }
+.lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 24px; }
+.muted { color: var(--muted); }
+code { background: var(--code); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+.card b { display: block; font-size: 1.4rem; }
+.card span { color: var(--muted); font-size: .9rem; }
+.table-wrap { overflow-x: auto; margin: 12px 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { background: var(--accent-soft); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.yes { background: var(--good-soft); color: var(--good); }
+.no { background: var(--bad-soft); color: var(--bad); }
+.part { background: var(--warn-soft); color: var(--warn); }
+.note { background: var(--warn-soft); border-left: 3px solid var(--warn); padding: 10px 14px; border-radius: 4px; margin: 16px 0; }
+figure { margin: 16px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; overflow-x: auto; }
+figcaption { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+svg text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.box { fill: var(--surface); stroke: var(--line); }
+.box-accent { fill: var(--accent-soft); stroke: var(--accent); }
+.box-good { fill: var(--good-soft); stroke: var(--good); }
+.box-warn { fill: var(--warn-soft); stroke: var(--warn); }
+.box-bad { fill: var(--bad-soft); stroke: var(--bad); }
+.t { fill: var(--text); font-size: 13px; }
+.ts { fill: var(--muted); font-size: 11px; }
+.arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+.acl { fill: none; stroke: var(--bad); stroke-dasharray: 5 4; }
+ol.decisions > li { margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Helpdesk RAG</h1>
+<p class="lede">A help desk that answers engineers' questions about two project repositories with cited
+answers: follow-ups in context, a clarifying question when it's ambiguous, a refusal when it's off-topic,
+a hand-off to a person when the docs don't say, and per-user access control. What was built, what each
+step measured, and what was kept.</p>
+
+<div class="cards">
+  <div class="card"><b>15 / 15</b><span>golden questions handled: 10 answered with citations, 5 off-topic refused</span></div>
+  <div class="card"><b>12 / 13</b><span>follow-up answers correct, 1 correctly refused (graded by hand)</span></div>
+  <div class="card"><b>32 / 34</b><span>turns routed right: answer, clarify, refuse or escalate</span></div>
+  <div class="card"><b>0</b><span>cross-repo leaks in 45 user x question runs</span></div>
+</div>
+
+<div class="note"><b>Scale, read this first.</b> Everything here was measured on a small corpus: 2 repositories,
+25 documents, 97 chunks, with hand-written golden sets (15 questions, 12 conversations, 30 policy cases,
+7 conflict cases). Most differences between variants are one or two questions, and no bootstrap CI below is
+clear of zero. Read the numbers as direction, not size.</div>
+
+<h2>The problem</h2>
+<p>Engineers ask "where is X", "how does Y work" and "which test covers Z" about two projects: a multi-agent
+commodities <b>research desk</b> and a trader / risk-manager <b>trade desk</b> sign-off app. Answers have to
+come from the projects' own Markdown docs and pytest files, cite the exact lines, say when the docs don't
+cover something, and never show one team another team's repo.</p>
+
+<h2>Architecture</h2>
+<figure>
+<svg viewBox="0 0 940 420" width="100%" role="img" aria-label="Pipeline: question, condense, retrieve, gate, policy, then answer, clarify, refuse or escalate">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="currentColor" style="color: var(--muted)"/></marker></defs>
+
+  <!-- indexing -->
+  <rect class="box" x="10" y="20" width="232" height="104" rx="8"/>
+  <text class="t" x="22" y="44" font-weight="600">Indexing (offline)</text>
+  <text class="ts" x="22" y="64">Markdown by heading, pytest by test</text>
+  <text class="ts" x="22" y="80">400-token chunks, 97 total</text>
+  <text class="ts" x="22" y="96">+ Haiku context per chunk (cached)</text>
+  <text class="ts" x="22" y="112">bge-small vectors + BM25, incremental</text>
+
+  <!-- question -->
+  <rect class="box-accent" x="10" y="160" width="130" height="56" rx="8"/>
+  <text class="t" x="22" y="184" font-weight="600">Question</text>
+  <text class="ts" x="22" y="202">+ history, user</text>
+
+  <rect class="box" x="170" y="160" width="130" height="56" rx="8"/>
+  <text class="t" x="182" y="184" font-weight="600">Condense</text>
+  <text class="ts" x="182" y="202">follow-up -> standalone</text>
+
+  <rect class="box" x="330" y="146" width="170" height="84" rx="8"/>
+  <text class="t" x="342" y="170" font-weight="600">Retrieve (hybrid)</text>
+  <text class="ts" x="342" y="188">vector on context + chunk</text>
+  <text class="ts" x="342" y="204">+ BM25, fused by RRF</text>
+  <text class="ts" x="342" y="220">top 8, + last turn's sources</text>
+
+  <rect class="box" x="524" y="160" width="160" height="56" rx="8"/>
+  <text class="t" x="536" y="184" font-weight="600">Gate</text>
+  <text class="ts" x="536" y="202">cross-encoder, header+chunk</text>
+
+  <rect class="box-accent" x="700" y="146" width="140" height="84" rx="8"/>
+  <text class="t" x="712" y="170" font-weight="600">Policy</text>
+  <text class="ts" x="712" y="188">rules first, then one</text>
+  <text class="ts" x="712" y="204">cached Haiku scope call</text>
+  <text class="ts" x="712" y="220">(not answerability)</text>
+
+  <path class="arrow" d="M140,188 L168,188"/>
+  <path class="arrow" d="M300,188 L328,188"/>
+  <path class="arrow" d="M500,188 L522,188"/>
+  <path class="arrow" d="M684,188 L698,188"/>
+  <path class="arrow" d="M110,124 L110,140 L415,140 L415,144"/>
+
+  <!-- outcomes -->
+  <rect class="box-good" x="560" y="286" width="170" height="74" rx="8"/>
+  <text class="t" x="572" y="310" font-weight="600">Answer (Haiku)</text>
+  <text class="ts" x="572" y="328">cited lines + last-changed date</text>
+  <text class="ts" x="572" y="344">flags conflicting sources</text>
+
+  <rect class="box-accent" x="390" y="286" width="150" height="74" rx="8"/>
+  <text class="t" x="402" y="310" font-weight="600">Clarify</text>
+  <text class="ts" x="402" y="328">"Do you mean ...?"</text>
+  <text class="ts" x="402" y="344">options from the hits</text>
+
+  <rect class="box-warn" x="230" y="286" width="140" height="74" rx="8"/>
+  <text class="t" x="242" y="310" font-weight="600">Refuse</text>
+  <text class="ts" x="242" y="328">off-topic, injection,</text>
+  <text class="ts" x="242" y="344">system-prompt requests</text>
+
+  <rect class="box-bad" x="750" y="286" width="180" height="74" rx="8"/>
+  <text class="t" x="762" y="310" font-weight="600">Escalate</text>
+  <text class="ts" x="762" y="328">local ticket + contact from</text>
+  <text class="ts" x="762" y="344">git log; nothing sent</text>
+
+  <path class="arrow" d="M770,230 L770,250 L475,250 L475,284"/>
+  <path class="arrow" d="M770,250 L300,250 L300,284"/>
+  <path class="arrow" d="M770,250 L645,250 L645,284"/>
+  <path class="arrow" d="M645,360 L645,384 L840,384 L840,362"/>
+  <text class="ts" x="660" y="400">"not found" or gate &lt; 0.1 -> escalate</text>
+  <path class="arrow" d="M820,230 L840,230 L840,284"/>
+  <text class="ts" x="846" y="262">asks for a person,</text>
+  <text class="ts" x="846" y="276">2 refusals in a row</text>
+
+  <!-- ACL -->
+  <path class="acl" d="M318,134 L852,134 L852,240 L938,240 L938,370 L222,370 L222,240 L318,240 Z"/>
+  <text class="ts" x="326" y="128" style="fill: var(--bad)">ACL: repo filter on search + every chunk path</text>
+</svg>
+<figcaption>One turn in <code>helpdesk/pipeline.py</code>. The dashed box: everything inside it only ever sees
+chunks from repos the user may read (search filter, then a second filter on sticky sources, gate, policy,
+generator and tickets).</figcaption>
+</figure>
+
+<h2>Evidence: one row per change</h2>
+<p class="muted">Measured in this repo; "CI" is a paired bootstrap 95% interval over questions. "n" is the
+number of answerable questions or turns compared.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Step</th><th>Change</th><th>Metric</th><th>Before -> after</th><th>CI</th><th>Shipped?</th></tr></thead>
+<tbody>
+<tr><td>8</td><td>Hybrid (vector + BM25, RRF) vs vector, plain chunks</td><td>MRR, n=10</td><td>0.767 -> 0.758</td><td>-0.009 [-0.027, 0.000]</td><td><span class="tag part">as part of llm+hybrid</span></td></tr>
+<tr><td>8</td><td>Query transforms (HyDE, rewrite, ...)</td><td colspan="3">built and tested; not evaluated on this corpus</td><td><span class="tag no">no</span></td></tr>
+<tr><td>9</td><td>Header context ("repo / path / heading")</td><td>hybrid MRR, n=10</td><td>0.758 -> 0.790</td><td>+0.033 [-0.050, +0.149]</td><td><span class="tag part">for the gate</span></td></tr>
+<tr><td>9</td><td>Header context, BM25 only</td><td>answer-chunk R@8</td><td>0.60 -> 0.80</td><td>-</td><td><span class="tag part">for the gate</span></td></tr>
+<tr><td>9</td><td>LLM context (Haiku sentence per chunk)</td><td>hybrid answer-chunk R@20</td><td>0.90 -> 1.00</td><td>+0.10 [0, +0.30]</td><td><span class="tag yes">yes, retrieval</span></td></tr>
+<tr><td>9</td><td>LLM context, vector</td><td>MRR</td><td>0.767 -> 0.850</td><td>+0.083 [0.000, +0.200]</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>9</td><td>Prompt-cache fix (document in system prompt)</td><td>cost per context call</td><td>$0.00056 -> $0.00037</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>9</td><td>Gate scores header + chunk instead of chunk</td><td>lowest answerable gate score</td><td>-1.60 -> +1.44 (negatives stay at -10.6)</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>9</td><td>Gated Claude rerank (top 20) before Haiku</td><td>citation recall, 15 q</td><td>1.00 -> 0.92 (answers, refusals equal)</td><td>-</td><td><span class="tag no">no (optional flag)</span></td></tr>
+<tr><td>10</td><td>Condense follow-ups vs search as typed</td><td>follow-up answer-chunk R@20, n=12</td><td>0.75 -> 1.00</td><td>+0.25 [0.00, +0.50]</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>10</td><td>Condense vs concatenated history</td><td>answer-chunk MRR / old-topic drag</td><td>0.46 -> 0.62 / 0.25 -> 0.06</td><td>+0.16 [-0.02, +0.35]</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>10</td><td>Sticky sources (last turn's citations)</td><td>any rank</td><td>no change on any turn</td><td>0</td><td><span class="tag part">kept, behind new hits</span></td></tr>
+<tr><td>10</td><td>History summarising (last 4 turns in full)</td><td>prompt tokens at turn 10</td><td>3,130 -> 1,916</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>11</td><td>Policy v1 -> v3 (scope only; escalate after a refusal)</td><td>turns routed right, 34</td><td>31 -> 32 (rules only 25 -> 29)</td><td>-</td><td><span class="tag yes">v3</span></td></tr>
+<tr><td>12</td><td>Per-user repo filter, two layers</td><td>leaks in 45 runs</td><td>- -> 0</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>12</td><td>Incremental re-index (content hashes)</td><td>rebuild after one edit</td><td>5.34 s -> 0.08 s</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>12</td><td>Conflict instructions + source dates</td><td>conflict cases handled, graded by hand</td><td>- -> 7/7</td><td>-</td><td><span class="tag yes">yes</span></td></tr>
+<tr><td>13</td><td>FAISS approximate indexes (HNSW, IVF, IVF-PQ) vs exact</td><td>recall@10 at N=97 / p50</td><td>exact is fastest here (0.013 ms); HNSW 1.000 from efSearch 64</td><td>-</td><td><span class="tag no">no: exact at this size</span></td></tr>
+<tr><td>13</td><td>int8 / fp16 vector codes</td><td>golden recall</td><td>unchanged, 2-4x less memory</td><td>-</td><td><span class="tag no">not needed at 97</span></td></tr>
+<tr><td>4-7</td><td>Qwen3 embeddings, cross-encoder as ranker</td><td colspan="3">reported in the earlier setup's benchmark (other repos); not re-measured here</td><td><span class="tag no">no</span></td></tr>
+</tbody></table></div>
+
+<h2>Five decisions</h2>
+<ol class="decisions">
+<li><b>LLM context for retrieval, the header for the gate.</b> The Haiku-written sentence is the only variant
+that found every answer chunk in the top 20, and it fixes the one failure a header can't: vocabulary the chunk
+lacks (it links "gold" to the ticker <code>GC=F</code>: rank 1-2 vs 14-19). The free header wins where the
+heading is the best keyword and separates real questions from off-topic ones best at the gate. Both are cheap:
+$0.036 for the whole index.</li>
+<li><b>Condense follow-ups; don't concatenate history.</b> Both find the answer, but joined history ranks it
+lower on 8 of 12 turns and drags the old topic into a quarter of the results after a topic switch. Condensing
+costs one cached Haiku call per follow-up.</li>
+<li><b>The policy routes; the evidence decides whether something is answerable.</b> The first policy judged
+"is it answerable?" from five hit titles before anything was read. Now it only judges scope (and asks which
+project when the hits are split), and an in-scope question escalates after the gate finds nothing or the answer
+step says "not found". The answer step reads the text and refused every off-topic question in every run.</li>
+<li><b>No Claude rerank by default.</b> On this corpus plain Haiku answered 10/10 and refused 5/5 from plain
+retrieval; the gated rerank added calls and latency and slightly lower citation recall. It stays an option for
+a bigger corpus, where a top 8 is harder to get right.</li>
+<li><b>Two access layers, and forbidden looks like missing.</b> A metadata filter on search is one bug away
+from a leak, so every other path a chunk can take is filtered again (tested with poisoned sticky sources). A
+user asking about a repo they can't see gets the same "I couldn't find this" as for anything undocumented,
+because confirming that a document exists is itself a leak.</li>
+</ol>
+
+<h2>Cost and latency</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>What</th><th>Measured</th></tr></thead>
+<tbody>
+<tr><td>One follow-up turn, caches off (median of 3)</td><td>30.4 s: condense 34%, scope check 29%, answer 36%; embedding, search, fusion and gate together 0.9%</td></tr>
+<tr><td>Retrieval (embed + vector + BM25 + fusion)</td><td>~60 ms per query, local; vector search itself 15 ms</td></tr>
+<tr><td>Cited answer (Haiku)</td><td>~11 s, about $0.0008 per question</td></tr>
+<tr><td>Follow-up rewrite, scope check</td><td>one Haiku call each when needed, cached</td></tr>
+<tr><td>LLM contexts for the whole index</td><td>97 calls, 240 s, $0.036 (about $2.8 per million document tokens)</td></tr>
+<tr><td>Prompt-cache fix</td><td>cache reads 16% -> 49% of input tokens; $0.00056 -> $0.00037 per call</td></tr>
+<tr><td>Re-index after editing one document</td><td>1 chunk re-embedded, 0.08 s; ~$0.0004 per changed chunk's context</td></tr>
+</tbody></table></div>
+<p class="muted">Anthropic reports $1.02 per million document tokens for contextual retrieval. This corpus costs
+about 2.7x that: its documents are tiny (3.9 chunks each), so each document's first cache write is a large share,
+and the generated contexts (22,870 output tokens) outweigh the corpus itself.</p>
+
+<h2>Failure modes and limits</h2>
+<ul>
+<li><b>Small, self-written golden sets.</b> 15 questions, 12 conversations, 30 policy cases; the same author
+(with AI assistance) wrote the questions and the system, so they share blind spots. One question moves a rate by
+up to 0.1.</li>
+<li><b>No git history here.</b> Every source's date shows "unknown" and hand-offs suggest no contact. Git
+authorship isn't ownership anyway; a real deployment needs an owners map.</li>
+<li><b>No genuine conflicts in the corpus.</b> The conflict handling is tested on synthetic copies with one number
+changed.</li>
+<li><b>Known misses.</b> "How do I run the tests for the research desk?" doesn't retrieve the README's Run section
+(test-file headers crowd it out), so it escalates. "Translate 'risk manager'" names a project alias, skips the scope
+check, and escalates instead of being refused.</li>
+<li><b>Red-team gap.</b> Two attack prompts are tested; prompt injection inside retrieved documents is not.</li>
+<li><b>Windows encoding.</b> A cp1252 default silently dropped whole prompts that contained one non-cp1252
+character; fixed (UTF-8 everywhere), worth checking in any new subprocess call.</li>
+</ul>
+
+<h2>What I'd do next</h2>
+<ol>
+<li>Grow the golden sets with questions written by people who didn't build it, including identifier-style and
+split-section questions, where LLM context should matter most.</li>
+<li>Fix the "run the tests" retrieval miss (down-weight bare test-module headers) and drop the "names a project,
+so in scope" shortcut.</li>
+<li>Real clones with git history, an owners map for hand-offs, and permissions from the directory, re-checked per
+request; consider one collection per team.</li>
+<li>Red-team prompt injection in retrieved text, and apply the access rules to caches, sessions and tickets.</li>
+<li>Measure on real traffic before tuning further: clarifying-question rate, escalations per day, refusals users
+disagree with.</li>
+</ol>
+
+<p class="muted" style="margin-top:48px">Lab notebook with every table and run file: NOTES.md. How to run it: README.md.</p>
+</main>
+</body>
+</html>

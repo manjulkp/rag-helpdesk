@@ -1,0 +1,42 @@
+[
+  {
+    "index": "float32 (flat)",
+    "bytes_per_vector": 1536,
+    "recall@10": 1.0,
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10
+  },
+  {
+    "index": "fp16",
+    "bytes_per_vector": 768,
+    "recall@10": 1.0,
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10
+  },
+  {
+    "index": "int8 (SQ8)",
+    "bytes_per_vector": 384,
+    "recall@10": 0.9953,
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10
+  },
+  {
+    "index": "binary (sign bits)",
+    "bytes_per_vector": 48.0,
+    "recall@10": 0.6266,
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10
+  },
+  {
+    "index": "binary + float re-score of top 32",
+    "bytes_per_vector": 48.0,
+    "recall@10": 0.9328,
+    "R@8": 1.0,
+    "ansR@20": 0.9,
+    "n": 10
+  }
+]

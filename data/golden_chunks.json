@@ -1,0 +1,34 @@
+{
+  "concept-01": [
+    [{"repo": "research-desk", "path": "README.md", "title": "Fixed Synthetic Answers"}]
+  ],
+  "concept-02": [
+    [{"repo": "research-desk", "path": "data/policy.md", "title": "Desk Research Policy"}]
+  ],
+  "concept-03": [
+    [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Risk Rules"}]
+  ],
+  "concept-04": [
+    [{"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Architecture"}]
+  ],
+  "test-01": [
+    [{"repo": "research-desk", "path": "tests/test_tools.py", "title": "test_news_scores_and_recommendations_are_code_calculated"}]
+  ],
+  "test-02": [
+    [{"repo": "research-desk", "path": "tests/test_loop.py", "title": "test_loop_reports_repeated_tool_call_as_error_result"}]
+  ],
+  "test-03": [
+    [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py", "title": "test_wrong_side_stop_fails"}]
+  ],
+  "identifier-01": [
+    [{"repo": "research-desk", "path": "tests/test_tools.py", "title": "test_price_math_matches_fixed_answer_key"}]
+  ],
+  "multi-01": [
+    [{"repo": "research-desk", "path": "eval/WRITEUP.md", "title": "Protocol"}],
+    [{"repo": "research-desk", "path": "README.md", "title": "Commodities Research Desk"}]
+  ],
+  "multi-02": [
+    [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Risk Rules"}],
+    [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py", "title": "test_loss_over_limit_fails"}]
+  ]
+}

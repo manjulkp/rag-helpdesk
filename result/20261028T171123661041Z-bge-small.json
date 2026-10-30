@@ -1,0 +1,2631 @@
+{
+  "timestamp": "20261028T171123661041Z",
+  "config": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "name": "bge-small",
+    "variant": "plain",
+    "collection": "helpdesk-baai-bge-small-en-v1-5",
+    "retriever": "vector",
+    "transform": "noop",
+    "reranker": "none",
+    "rerank_cutoff": null,
+    "candidates": null,
+    "rrf_k": null,
+    "depth": 20,
+    "max_tokens": 400,
+    "golden_sha256": "0618716691ee7037c9afe48d7f144279db97f748a909870ae11b302daa64bc38",
+    "golden_chunks_sha256": "91fe4731cf74b17fcd0a82682710895412fe69b1a4f2a94e229fd4c941b2d6a8",
+    "questions": 15,
+    "device": "cpu",
+    "latency_ms_per_query": 32.9,
+    "transform_fallbacks": null,
+    "rerank_skipped": null
+  },
+  "summary": {
+    "overall": {
+      "recall@1": 0.6,
+      "recall@3": 0.9,
+      "recall@5": 0.9,
+      "recall@8": 1.0,
+      "recall@20": 1.0,
+      "n": 10,
+      "mrr": 0.7666666666666667,
+      "answer_recall@8": 0.9,
+      "answer_recall@20": 0.9,
+      "n_answer_labelled": 10
+    },
+    "by_type": {
+      "concept": {
+        "recall@1": 0.75,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 4,
+        "mrr": 0.875,
+        "answer_recall@8": 0.75,
+        "answer_recall@20": 0.75,
+        "n_answer_labelled": 4
+      },
+      "identifier": {
+        "recall@1": 0.0,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 1,
+        "mrr": 0.16666666666666666,
+        "answer_recall@8": 1.0,
+        "answer_recall@20": 1.0,
+        "n_answer_labelled": 1
+      },
+      "multi": {
+        "recall@1": 0.5,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 2,
+        "mrr": 0.75,
+        "answer_recall@8": 1.0,
+        "answer_recall@20": 1.0,
+        "n_answer_labelled": 2
+      },
+      "negative": {
+        "recall@1": null,
+        "recall@3": null,
+        "recall@5": null,
+        "recall@8": null,
+        "recall@20": null,
+        "n": 0,
+        "mrr": null,
+        "answer_recall@8": null,
+        "answer_recall@20": null,
+        "n_answer_labelled": 0
+      },
+      "test": {
+        "recall@1": 0.6666666666666666,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 3,
+        "mrr": 0.8333333333333334,
+        "answer_recall@8": 1.0,
+        "answer_recall@20": 1.0,
+        "n_answer_labelled": 3
+      }
+    },
+    "by_repo": {
+      "research-desk": {
+        "recall@1": 0.6666666666666666,
+        "recall@3": 0.8333333333333334,
+        "recall@5": 0.8333333333333334,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 6,
+        "mrr": 0.7777777777777778,
+        "answer_recall@8": 1.0,
+        "answer_recall@20": 1.0,
+        "n_answer_labelled": 6
+      },
+      "two-agent-trader-riskmanger": {
+        "recall@1": 0.5,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@8": 1.0,
+        "recall@20": 1.0,
+        "n": 4,
+        "mrr": 0.75,
+        "answer_recall@8": 0.75,
+        "answer_recall@20": 0.75,
+        "n_answer_labelled": 4
+      }
+    },
+    "multi_all_found": {
+      "1": 0.0,
+      "3": 0.5,
+      "5": 0.5,
+      "8": 1.0,
+      "20": 1.0
+    },
+    "top1_score": {
+      "negative": {
+        "n": 5,
+        "min": 0.561639,
+        "median": 0.600843,
+        "max": 0.64843
+      },
+      "answerable_hit": {
+        "n": 10,
+        "min": 0.688399,
+        "median": 0.7535375,
+        "max": 0.794088
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": "concept-01",
+      "type": "concept",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "README.md"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.742736
+        },
+        {
+          "id": "44e98835914ca069bda3647ca2ec8e4663a2f623",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "Module header",
+          "score": 0.616397
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.614816
+        },
+        {
+          "id": "4d71783baf54720c1dc228c309de7fd30d379336",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "Module header",
+          "score": 0.611616
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.609159
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.606513
+        },
+        {
+          "id": "fceb4fc1397d3455334f4e20e7d16d69a900a569",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "Module header",
+          "score": 0.605783
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.601669
+        },
+        {
+          "id": "932c266e733e22e443d410a153bf8e6b1fd4d382",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off",
+          "score": 0.601215
+        },
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "score": 0.600991
+        },
+        {
+          "id": "79f33b298ad7550633d66e18b8ee1d968671c37d",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "Module header",
+          "score": 0.592772
+        },
+        {
+          "id": "afedd7108c37466a9ba0023dc59edfc37e6b415f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "Module header",
+          "score": 0.587367
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.584714
+        },
+        {
+          "id": "fb13dc4233ef533d381413a5dcd29df2b595092d",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "Module header",
+          "score": 0.583169
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.577588
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.576287
+        },
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.569681
+        },
+        {
+          "id": "54d3d627a31234ec9d7ef51f8eb543ab489f2198",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "Module header",
+          "score": 0.568007
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.565553
+        },
+        {
+          "id": "cba6735da972f8550a4459a8f7727d97c7e05a26",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "Module header",
+          "score": 0.564715
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 1,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "README.md",
+            "title": "fixed synthetic answers"
+          }
+        ]
+      ],
+      "answer_rank": 6,
+      "answer_labelled": true
+    },
+    {
+      "id": "concept-02",
+      "type": "concept",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "data/policy.md"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.79376
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.761897
+        },
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "score": 0.712209
+        },
+        {
+          "id": "ea51e9b985d0b09fbcd0a6c2e5343b9962e4a14e",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "Module header",
+          "score": 0.700342
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.680392
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.676167
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.674523
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.663177
+        },
+        {
+          "id": "2aee79dacefaaca037f67d0d9048284c5e8e25dc",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "gold_brief",
+          "score": 0.662872
+        },
+        {
+          "id": "fb13dc4233ef533d381413a5dcd29df2b595092d",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "Module header",
+          "score": 0.655329
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.654245
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.631318
+        },
+        {
+          "id": "850d8177acc6b8726237d7820324acaa6132bd0b",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Limitations and Next Work",
+          "score": 0.629951
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.62884
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.627082
+        },
+        {
+          "id": "74d41dfd7a2c1951af88f96b771dc09840094537",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Question",
+          "score": 0.623828
+        },
+        {
+          "id": "f4b95062dc64ecf77c2fac49b0afe11bdec5eaba",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_invalid_finish_output_is_rejected_and_model_gets_error",
+          "score": 0.622487
+        },
+        {
+          "id": "75806d0c883dc6108df18001acc6e6e5d7d2df25",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_runs_tool_then_returns_finish_call",
+          "score": 0.620453
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.61858
+        },
+        {
+          "id": "562a515753273c1b227fa8600d8341f24a817fb2",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_single_baseline_uses_tools_and_returns_structured_brief",
+          "score": 0.618507
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 1,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "data/policy.md",
+            "title": "desk research policy"
+          }
+        ]
+      ],
+      "answer_rank": 1,
+      "answer_labelled": true
+    },
+    {
+      "id": "concept-03",
+      "type": "concept",
+      "repos": [
+        "two-agent-trader-riskmanger"
+      ],
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "6f94668d61668bb6613ac37a12ba4c26817851df",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off",
+          "score": 0.79365
+        },
+        {
+          "id": "587f86651e904a35f414f9044aec86d1b675deff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Trust boundary",
+          "score": 0.767041
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.76382
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.763235
+        },
+        {
+          "id": "c61fa0dfade9d2b00015ae16680deb6036b0c616",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "make_agents",
+          "score": 0.721004
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "score": 0.713234
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.706714
+        },
+        {
+          "id": "5ef136fb9eeeee4cf05cdc14f394706b56b0736d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > Why Two Agents Instead of One?",
+          "score": 0.703228
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.702125
+        },
+        {
+          "id": "22f08e0dc2f21e717122a3bc3a5feff609bd77e4",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Happens When the Agents Disagree?",
+          "score": 0.700766
+        },
+        {
+          "id": "76561bc639a5912879e719398b1bae387118cfd1",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_agents_forward_each_others_words_and_stop_on_verdict",
+          "score": 0.694715
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.69423
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.690723
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.687685
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.684547
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.681821
+        },
+        {
+          "id": "c252d9b4418a95937e86db7c3657dbf8acbe271d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > How Do the Agents Communicate?",
+          "score": 0.680463
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "score": 0.67498
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.669208
+        },
+        {
+          "id": "0f2ecdd176b7680293d75be3bb90eb5526d3eb0a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_turn_limit_rejects_and_adds_final_turn_note",
+          "score": 0.662384
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 1,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "title": "risk rules"
+          }
+        ]
+      ],
+      "answer_rank": null,
+      "answer_labelled": true
+    },
+    {
+      "id": "concept-04",
+      "type": "concept",
+      "repos": [
+        "two-agent-trader-riskmanger"
+      ],
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "87008279ded845594425501fb1d820e934119ef3",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_live_prices.py",
+          "title": "test_live_quote_replaces_market_fields_but_keeps_limits",
+          "score": 0.794088
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "score": 0.714538
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "score": 0.711263
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.686994
+        },
+        {
+          "id": "5e7edadc3ce6d043fc1d7103fbf91ac3c0e5ac9b",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_market.py",
+          "title": "test_load_scenarios",
+          "score": 0.684429
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.671189
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.662094
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.655763
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "score": 0.655713
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.654991
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.654404
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.647704
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.647402
+        },
+        {
+          "id": "cbe685b7bc4590df8d36c88b05e8ae001077a724",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_live_prices.py",
+          "title": "Module header",
+          "score": 0.646547
+        },
+        {
+          "id": "850d8177acc6b8726237d7820324acaa6132bd0b",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Limitations and Next Work",
+          "score": 0.641174
+        },
+        {
+          "id": "c5f14e2dae8781e5a7a8f71644f483bc797c641d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "test_loop_and_graph_have_matching_outcomes",
+          "score": 0.63639
+        },
+        {
+          "id": "37a5342a6cd4978430a79f86fda70231c5cbcd34",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > Why Is the Test Fake Useful?",
+          "score": 0.633674
+        },
+        {
+          "id": "fceb4fc1397d3455334f4e20e7d16d69a900a569",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "Module header",
+          "score": 0.62978
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "score": 0.629516
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.62879
+        }
+      ],
+      "rank": 2,
+      "all_found_rank": 2,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "README.md",
+            "title": "architecture"
+          }
+        ]
+      ],
+      "answer_rank": 2,
+      "answer_labelled": true
+    },
+    {
+      "id": "test-01",
+      "type": "test",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_tools.py"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "score": 0.745917
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.699156
+        },
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.698518
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.687098
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "score": 0.681787
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.66977
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.66623
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.66226
+        },
+        {
+          "id": "908049861df87db3e24b1d891ebb6e205678e2c5",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "valid_gold_finding",
+          "score": 0.661746
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.649597
+        },
+        {
+          "id": "ea51e9b985d0b09fbcd0a6c2e5343b9962e4a14e",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "Module header",
+          "score": 0.644359
+        },
+        {
+          "id": "74d41dfd7a2c1951af88f96b771dc09840094537",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Question",
+          "score": 0.642704
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.631019
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.630999
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.63096
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.622351
+        },
+        {
+          "id": "f2a8ca9688eb7eb6eb45c1897efdb8d8ceb5fc6d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_float_trap_is_rounded_to_cents",
+          "score": 0.621549
+        },
+        {
+          "id": "8e31de5feb189ead639f72681922b374b5c3b801",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_unknown_ticker_and_sentiment_fail_closed",
+          "score": 0.618036
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.617472
+        },
+        {
+          "id": "c4e6008c24f173e08ad386b08f89e58f46d25f7f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Can I Replay or Measure?",
+          "score": 0.615297
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 1,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "title": "test_news_scores_and_recommendations_are_code_calculated"
+          }
+        ]
+      ],
+      "answer_rank": 1,
+      "answer_labelled": true
+    },
+    {
+      "id": "test-02",
+      "type": "test",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_loop.py"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "score": 0.761158
+        },
+        {
+          "id": "b776c97882f17f9178990f55979d9fc2d3bc77fe",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_reports_repeated_tool_call_as_error_result",
+          "score": 0.739072
+        },
+        {
+          "id": "f8471e0b37177f24089c8306db77271742902a71",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Analysis > Injection behavior",
+          "score": 0.735302
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.732565
+        },
+        {
+          "id": "74aec6d658c838636fe489b0879aea208daafcff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Would You Build Next?",
+          "score": 0.721467
+        },
+        {
+          "id": "394c5e4cb0b86e24f8aae8b7814335e411968f3a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Happens With Malformed Output, Tool Errors, or Prompt Injection?",
+          "score": 0.721318
+        },
+        {
+          "id": "1bda24281e4cbea3d959b37879d014d841dbf1b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_agent.py",
+          "title": "test_agent_resends_full_history_and_accumulates_usage",
+          "score": 0.721094
+        },
+        {
+          "id": "c4e6008c24f173e08ad386b08f89e58f46d25f7f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Can I Replay or Measure?",
+          "score": 0.718578
+        },
+        {
+          "id": "c5f14e2dae8781e5a7a8f71644f483bc797c641d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "test_loop_and_graph_have_matching_outcomes",
+          "score": 0.710039
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.70958
+        },
+        {
+          "id": "4d71783baf54720c1dc228c309de7fd30d379336",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "Module header",
+          "score": 0.706084
+        },
+        {
+          "id": "60ddb38af0e41ed4ed42b80d7a6e14804d9ff214",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Stops the Context From Growing Forever?",
+          "score": 0.704507
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.702539
+        },
+        {
+          "id": "75806d0c883dc6108df18001acc6e6e5d7d2df25",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_runs_tool_then_returns_finish_call",
+          "score": 0.700134
+        },
+        {
+          "id": "51eea9f58d244aef9bc87318a5a0193893b96518",
+          "repo": "research-desk",
+          "path": "tests/test_cli_client.py",
+          "title": "test_cli_adapter_maps_named_structured_tool_call",
+          "score": 0.699298
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "score": 0.698905
+        },
+        {
+          "id": "ff3f02c3078be0c6c8ce47559ed7569464de4582",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_agent.py",
+          "title": "test_agent_omits_tools_when_none_and_preserves_full_reply_content",
+          "score": 0.698594
+        },
+        {
+          "id": "54d3d627a31234ec9d7ef51f8eb543ab489f2198",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "Module header",
+          "score": 0.697254
+        },
+        {
+          "id": "f4b95062dc64ecf77c2fac49b0afe11bdec5eaba",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_invalid_finish_output_is_rejected_and_model_gets_error",
+          "score": 0.696362
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.695262
+        }
+      ],
+      "rank": 2,
+      "all_found_rank": 2,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_loop.py",
+            "title": "test_loop_reports_repeated_tool_call_as_error_result"
+          }
+        ]
+      ],
+      "answer_rank": 2,
+      "answer_labelled": true
+    },
+    {
+      "id": "test-03",
+      "type": "test",
+      "repos": [
+        "two-agent-trader-riskmanger"
+      ],
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "58cb4fe3a7056d6f72091ffbde3bd5ee971c880c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_oversized_trade_fails",
+          "score": 0.780068
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "score": 0.771948
+        },
+        {
+          "id": "dbba7c1c722f3a47839fb6e4af8aa0837947afe7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_wrong_side_stop_fails",
+          "score": 0.757998
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "score": 0.731639
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "score": 0.700629
+        },
+        {
+          "id": "0f2ecdd176b7680293d75be3bb90eb5526d3eb0a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_turn_limit_rejects_and_adds_final_turn_note",
+          "score": 0.698624
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.693668
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.657232
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.655275
+        },
+        {
+          "id": "f2a8ca9688eb7eb6eb45c1897efdb8d8ceb5fc6d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_float_trap_is_rounded_to_cents",
+          "score": 0.637278
+        },
+        {
+          "id": "c5f14e2dae8781e5a7a8f71644f483bc797c641d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "test_loop_and_graph_have_matching_outcomes",
+          "score": 0.635647
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.634574
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "score": 0.634126
+        },
+        {
+          "id": "76561bc639a5912879e719398b1bae387118cfd1",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_agents_forward_each_others_words_and_stop_on_verdict",
+          "score": 0.629588
+        },
+        {
+          "id": "d69be56cca08de9897c425559b2d284ac1e88373",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_missing_or_malformed_brief_gets_zero_credit_not_exception",
+          "score": 0.627111
+        },
+        {
+          "id": "22f08e0dc2f21e717122a3bc3a5feff609bd77e4",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Happens When the Agents Disagree?",
+          "score": 0.618574
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.616811
+        },
+        {
+          "id": "f4b95062dc64ecf77c2fac49b0afe11bdec5eaba",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_invalid_finish_output_is_rejected_and_model_gets_error",
+          "score": 0.616043
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.613199
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.612398
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 1,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "title": "test_wrong_side_stop_fails"
+          }
+        ]
+      ],
+      "answer_rank": 3,
+      "answer_labelled": true
+    },
+    {
+      "id": "identifier-01",
+      "type": "identifier",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_tools.py"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.688399
+        },
+        {
+          "id": "908049861df87db3e24b1d891ebb6e205678e2c5",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "valid_gold_finding",
+          "score": 0.685485
+        },
+        {
+          "id": "2aee79dacefaaca037f67d0d9048284c5e8e25dc",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "gold_brief",
+          "score": 0.666684
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.661571
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.645922
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "score": 0.6364
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.629844
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.62943
+        },
+        {
+          "id": "f2a8ca9688eb7eb6eb45c1897efdb8d8ceb5fc6d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_float_trap_is_rounded_to_cents",
+          "score": 0.625017
+        },
+        {
+          "id": "51eea9f58d244aef9bc87318a5a0193893b96518",
+          "repo": "research-desk",
+          "path": "tests/test_cli_client.py",
+          "title": "test_cli_adapter_maps_named_structured_tool_call",
+          "score": 0.622223
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.621574
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.621492
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.620477
+        },
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "score": 0.62042
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.617693
+        },
+        {
+          "id": "8e31de5feb189ead639f72681922b374b5c3b801",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_unknown_ticker_and_sentiment_fail_closed",
+          "score": 0.616981
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.616688
+        },
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.615865
+        },
+        {
+          "id": "dbba7c1c722f3a47839fb6e4af8aa0837947afe7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_wrong_side_stop_fails",
+          "score": 0.613923
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "score": 0.610896
+        }
+      ],
+      "rank": 6,
+      "all_found_rank": 6,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "title": "test_price_math_matches_fixed_answer_key"
+          }
+        ]
+      ],
+      "answer_rank": 6,
+      "answer_labelled": true
+    },
+    {
+      "id": "multi-01",
+      "type": "multi",
+      "repos": [
+        "research-desk"
+      ],
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md"
+        },
+        {
+          "repo": "research-desk",
+          "path": "README.md"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.698219
+        },
+        {
+          "id": "74d41dfd7a2c1951af88f96b771dc09840094537",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Question",
+          "score": 0.665923
+        },
+        {
+          "id": "5019c91a56cbdfcc09bc828801c1b4727019f79b",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep",
+          "score": 0.660107
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.656052
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.639597
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.621098
+        },
+        {
+          "id": "f8471e0b37177f24089c8306db77271742902a71",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Analysis > Injection behavior",
+          "score": 0.604381
+        },
+        {
+          "id": "74aec6d658c838636fe489b0879aea208daafcff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Would You Build Next?",
+          "score": 0.599796
+        },
+        {
+          "id": "c4e6008c24f173e08ad386b08f89e58f46d25f7f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Can I Replay or Measure?",
+          "score": 0.599
+        },
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "score": 0.594956
+        },
+        {
+          "id": "2dd5c4ba83ece8c49a8f856faa093e2a01417cfd",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_valid_finding_gets_narrow_llm_review",
+          "score": 0.585038
+        },
+        {
+          "id": "ea51e9b985d0b09fbcd0a6c2e5343b9962e4a14e",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "Module header",
+          "score": 0.584131
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.581524
+        },
+        {
+          "id": "44e98835914ca069bda3647ca2ec8e4663a2f623",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "Module header",
+          "score": 0.581181
+        },
+        {
+          "id": "c252d9b4418a95937e86db7c3657dbf8acbe271d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > How Do the Agents Communicate?",
+          "score": 0.577756
+        },
+        {
+          "id": "e1e4212b45d0bf44f55ca5825adf76b38260da67",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_reviewer_rejects_missing_eligible_article_sentiment",
+          "score": 0.576124
+        },
+        {
+          "id": "fceb4fc1397d3455334f4e20e7d16d69a900a569",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "Module header",
+          "score": 0.575877
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "score": 0.573011
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.572707
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.567786
+        }
+      ],
+      "rank": 1,
+      "all_found_rank": 2,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "eval/WRITEUP.md",
+            "title": "protocol"
+          }
+        ],
+        [
+          {
+            "repo": "research-desk",
+            "path": "README.md",
+            "title": "commodities research desk"
+          }
+        ]
+      ],
+      "answer_rank": 4,
+      "answer_labelled": true
+    },
+    {
+      "id": "multi-02",
+      "type": "multi",
+      "repos": [
+        "two-agent-trader-riskmanger"
+      ],
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md"
+        },
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py"
+        }
+      ],
+      "retrieved": [
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.74464
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.726322
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "score": 0.718968
+        },
+        {
+          "id": "932c266e733e22e443d410a153bf8e6b1fd4d382",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off",
+          "score": 0.718471
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "score": 0.702575
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.698122
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "score": 0.694748
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "score": 0.687734
+        },
+        {
+          "id": "5019c91a56cbdfcc09bc828801c1b4727019f79b",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep",
+          "score": 0.686033
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.68501
+        },
+        {
+          "id": "c5f14e2dae8781e5a7a8f71644f483bc797c641d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "test_loop_and_graph_have_matching_outcomes",
+          "score": 0.66997
+        },
+        {
+          "id": "0f2ecdd176b7680293d75be3bb90eb5526d3eb0a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_turn_limit_rejects_and_adds_final_turn_note",
+          "score": 0.666575
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.666468
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "score": 0.662321
+        },
+        {
+          "id": "6f94668d61668bb6613ac37a12ba4c26817851df",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off",
+          "score": 0.660879
+        },
+        {
+          "id": "58cb4fe3a7056d6f72091ffbde3bd5ee971c880c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_oversized_trade_fails",
+          "score": 0.656708
+        },
+        {
+          "id": "dbba7c1c722f3a47839fb6e4af8aa0837947afe7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_wrong_side_stop_fails",
+          "score": 0.656078
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.653872
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.653761
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.652168
+        }
+      ],
+      "rank": 2,
+      "all_found_rank": 6,
+      "is_negative": false,
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "title": "risk rules"
+          }
+        ],
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "title": "test_loss_over_limit_fails"
+          }
+        ]
+      ],
+      "answer_rank": 8,
+      "answer_labelled": true
+    },
+    {
+      "id": "negative-01",
+      "type": "negative",
+      "repos": [],
+      "expected": [],
+      "retrieved": [
+        {
+          "id": "51eea9f58d244aef9bc87318a5a0193893b96518",
+          "repo": "research-desk",
+          "path": "tests/test_cli_client.py",
+          "title": "test_cli_adapter_maps_named_structured_tool_call",
+          "score": 0.621134
+        },
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "score": 0.608354
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.597706
+        },
+        {
+          "id": "de4cc47dcc63a27d750888a38f5ed41fcdc2970c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "Module header",
+          "score": 0.585212
+        },
+        {
+          "id": "562a515753273c1b227fa8600d8341f24a817fb2",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_single_baseline_uses_tools_and_returns_structured_brief",
+          "score": 0.584272
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.582461
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.581491
+        },
+        {
+          "id": "7c33473c5c2a85f71ab8b0d38355415e6292c6d0",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "make_loop",
+          "score": 0.575014
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.573831
+        },
+        {
+          "id": "75806d0c883dc6108df18001acc6e6e5d7d2df25",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_runs_tool_then_returns_finish_call",
+          "score": 0.572479
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "score": 0.570075
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "score": 0.566415
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "score": 0.566241
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.564428
+        },
+        {
+          "id": "1cb71409680c3fa672cca603ca6d81b8f2f456f6",
+          "repo": "research-desk",
+          "path": "tests/test_cli_client.py",
+          "title": "Module header",
+          "score": 0.562137
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.561875
+        },
+        {
+          "id": "ac7e8e39da51d890460a6aa5d097a08f5bba4347",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_stops_at_token_budget",
+          "score": 0.557422
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.556846
+        },
+        {
+          "id": "c4e6008c24f173e08ad386b08f89e58f46d25f7f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Can I Replay or Measure?",
+          "score": 0.555297
+        },
+        {
+          "id": "38fd8b6c67c36f1d5ef5b388e2d97afb40f72d56",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Setup",
+          "score": 0.553087
+        }
+      ],
+      "rank": null,
+      "all_found_rank": null,
+      "is_negative": true,
+      "expected_chunks": [],
+      "answer_rank": null,
+      "answer_labelled": false
+    },
+    {
+      "id": "negative-02",
+      "type": "negative",
+      "repos": [],
+      "expected": [],
+      "retrieved": [
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.572294
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.562761
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.559306
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.558855
+        },
+        {
+          "id": "932c266e733e22e443d410a153bf8e6b1fd4d382",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off",
+          "score": 0.55705
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "score": 0.546315
+        },
+        {
+          "id": "2dd5c4ba83ece8c49a8f856faa093e2a01417cfd",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_valid_finding_gets_narrow_llm_review",
+          "score": 0.543374
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.542597
+        },
+        {
+          "id": "76561bc639a5912879e719398b1bae387118cfd1",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_agents_forward_each_others_words_and_stop_on_verdict",
+          "score": 0.536281
+        },
+        {
+          "id": "e1e4212b45d0bf44f55ca5825adf76b38260da67",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_reviewer_rejects_missing_eligible_article_sentiment",
+          "score": 0.533273
+        },
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "score": 0.530821
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.529161
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.526735
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.526529
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.52176
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.519691
+        },
+        {
+          "id": "f4b95062dc64ecf77c2fac49b0afe11bdec5eaba",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_invalid_finish_output_is_rejected_and_model_gets_error",
+          "score": 0.516643
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "score": 0.511909
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "score": 0.50963
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.509033
+        }
+      ],
+      "rank": null,
+      "all_found_rank": null,
+      "is_negative": true,
+      "expected_chunks": [],
+      "answer_rank": null,
+      "answer_labelled": false
+    },
+    {
+      "id": "negative-03",
+      "type": "negative",
+      "repos": [],
+      "expected": [],
+      "retrieved": [
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.600843
+        },
+        {
+          "id": "38fd8b6c67c36f1d5ef5b388e2d97afb40f72d56",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Setup",
+          "score": 0.582074
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.577818
+        },
+        {
+          "id": "9da83f3dd5151fa64b4a275363cd862d83056687",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Local Setup",
+          "score": 0.57013
+        },
+        {
+          "id": "786d7ae76861582d678b966a57e92f9d502ef936",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_code_review_rejects_injection_source_before_llm_call",
+          "score": 0.567497
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.566214
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "score": 0.562586
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "score": 0.561994
+        },
+        {
+          "id": "f4b95062dc64ecf77c2fac49b0afe11bdec5eaba",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_invalid_finish_output_is_rejected_and_model_gets_error",
+          "score": 0.561167
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "score": 0.561166
+        },
+        {
+          "id": "2dd5c4ba83ece8c49a8f856faa093e2a01417cfd",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_valid_finding_gets_narrow_llm_review",
+          "score": 0.560327
+        },
+        {
+          "id": "562a515753273c1b227fa8600d8341f24a817fb2",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_single_baseline_uses_tools_and_returns_structured_brief",
+          "score": 0.558751
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.558561
+        },
+        {
+          "id": "1bda24281e4cbea3d959b37879d014d841dbf1b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_agent.py",
+          "title": "test_agent_resends_full_history_and_accumulates_usage",
+          "score": 0.557101
+        },
+        {
+          "id": "e45450378c0a29c4cc106c9c607d491d67dcf77d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Setup",
+          "score": 0.556807
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.556076
+        },
+        {
+          "id": "75806d0c883dc6108df18001acc6e6e5d7d2df25",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_runs_tool_then_returns_finish_call",
+          "score": 0.553592
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.553113
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "score": 0.542474
+        },
+        {
+          "id": "e1e4212b45d0bf44f55ca5825adf76b38260da67",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_reviewer_rejects_missing_eligible_article_sentiment",
+          "score": 0.539761
+        }
+      ],
+      "rank": null,
+      "all_found_rank": null,
+      "is_negative": true,
+      "expected_chunks": [],
+      "answer_rank": null,
+      "answer_labelled": false
+    },
+    {
+      "id": "negative-04",
+      "type": "negative",
+      "repos": [],
+      "expected": [],
+      "retrieved": [
+        {
+          "id": "9da83f3dd5151fa64b4a275363cd862d83056687",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Local Setup",
+          "score": 0.561639
+        },
+        {
+          "id": "e45450378c0a29c4cc106c9c607d491d67dcf77d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Setup",
+          "score": 0.556887
+        },
+        {
+          "id": "7c33473c5c2a85f71ab8b0d38355415e6292c6d0",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "make_loop",
+          "score": 0.550329
+        },
+        {
+          "id": "38fd8b6c67c36f1d5ef5b388e2d97afb40f72d56",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Setup",
+          "score": 0.530301
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "score": 0.519282
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.518946
+        },
+        {
+          "id": "fb13dc4233ef533d381413a5dcd29df2b595092d",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "Module header",
+          "score": 0.514291
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.51269
+        },
+        {
+          "id": "ac7e8e39da51d890460a6aa5d097a08f5bba4347",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_stops_at_token_budget",
+          "score": 0.508777
+        },
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "score": 0.50373
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.502421
+        },
+        {
+          "id": "75806d0c883dc6108df18001acc6e6e5d7d2df25",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_runs_tool_then_returns_finish_call",
+          "score": 0.496829
+        },
+        {
+          "id": "74aec6d658c838636fe489b0879aea208daafcff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Would You Build Next?",
+          "score": 0.493897
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.490412
+        },
+        {
+          "id": "786d7ae76861582d678b966a57e92f9d502ef936",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_code_review_rejects_injection_source_before_llm_call",
+          "score": 0.489697
+        },
+        {
+          "id": "562a515753273c1b227fa8600d8341f24a817fb2",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_single_baseline_uses_tools_and_returns_structured_brief",
+          "score": 0.486578
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "score": 0.483636
+        },
+        {
+          "id": "b776c97882f17f9178990f55979d9fc2d3bc77fe",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_reports_repeated_tool_call_as_error_result",
+          "score": 0.482529
+        },
+        {
+          "id": "e1e4212b45d0bf44f55ca5825adf76b38260da67",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_reviewer_rejects_missing_eligible_article_sentiment",
+          "score": 0.481167
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.479782
+        }
+      ],
+      "rank": null,
+      "all_found_rank": null,
+      "is_negative": true,
+      "expected_chunks": [],
+      "answer_rank": null,
+      "answer_labelled": false
+    },
+    {
+      "id": "negative-05",
+      "type": "negative",
+      "repos": [],
+      "expected": [],
+      "retrieved": [
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "score": 0.64843
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "score": 0.632897
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "score": 0.629695
+        },
+        {
+          "id": "2aee79dacefaaca037f67d0d9048284c5e8e25dc",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "gold_brief",
+          "score": 0.628889
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "score": 0.623454
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "score": 0.615058
+        },
+        {
+          "id": "908049861df87db3e24b1d891ebb6e205678e2c5",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "valid_gold_finding",
+          "score": 0.614484
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "score": 0.611134
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "score": 0.610984
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "score": 0.608598
+        },
+        {
+          "id": "87008279ded845594425501fb1d820e934119ef3",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_live_prices.py",
+          "title": "test_live_quote_replaces_market_fields_but_keeps_limits",
+          "score": 0.607803
+        },
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "score": 0.603589
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "score": 0.602787
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.602192
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "score": 0.60066
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "score": 0.600167
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "score": 0.599547
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "score": 0.598753
+        },
+        {
+          "id": "8e31de5feb189ead639f72681922b374b5c3b801",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_unknown_ticker_and_sentiment_fail_closed",
+          "score": 0.596379
+        },
+        {
+          "id": "76561bc639a5912879e719398b1bae387118cfd1",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_agents_forward_each_others_words_and_stop_on_verdict",
+          "score": 0.596148
+        }
+      ],
+      "rank": null,
+      "all_found_rank": null,
+      "is_negative": true,
+      "expected_chunks": [],
+      "answer_rank": null,
+      "answer_labelled": false
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "n": 250000,
+  "sigma": 0.05,
+  "mean_cos_to_source": 0.714,
+  "share_of_true_top10_that_is_real": 0.881,
+  "rows": [
+    {
+      "index": "flat",
+      "params": {},
+      "recall@10": 1.0,
+      "p50_ms": 22.65,
+      "p95_ms": 27.458,
+      "build_s": 0.15,
+      "memory_mb": 384.0
+    },
+    {
+      "index": "hnsw",
+      "params": {
+        "M": 16,
+        "efSearch": 16
+      },
+      "recall@10": 0.2984,
+      "p50_ms": 0.098,
+      "p95_ms": 0.183,
+      "build_s": 13.82,
+      "memory_mb": 420.07
+    },
+    {
+      "index": "hnsw",
+      "params": {
+        "M": 16,
+        "efSearch": 64
+      },
+      "recall@10": 0.4641,
+      "p50_ms": 0.384,
+      "p95_ms": 0.544,
+      "build_s": 13.82,
+      "memory_mb": 420.07
+    },
+    {
+      "index": "hnsw",
+      "params": {
+        "M": 16,
+        "efSearch": 256
+      },
+      "recall@10": 0.5938,
+      "p50_ms": 1.357,
+      "p95_ms": 1.931,
+      "build_s": 13.82,
+      "memory_mb": 420.07
+    },
+    {
+      "index": "hnsw",
+      "params": {
+        "M": 32,
+        "efSearch": 64
+      },
+      "recall@10": 0.7234,
+      "p50_ms": 0.584,
+      "p95_ms": 0.792,
+      "build_s": 26.57,
+      "memory_mb": 452.04
+    },
+    {
+      "index": "hnsw",
+      "params": {
+        "M": 32,
+        "efSearch": 256
+      },
+      "recall@10": 0.8344,
+      "p50_ms": 2.036,
+      "p95_ms": 2.591,
+      "build_s": 26.57,
+      "memory_mb": 452.04
+    },
+    {
+      "index": "ivf",
+      "params": {
+        "nlist": 500,
+        "nprobe": 1
+      },
+      "recall@10": 0.0844,
+      "p50_ms": 0.105,
+      "p95_ms": 0.319,
+      "build_s": 6.44,
+      "memory_mb": 386.77
+    },
+    {
+      "index": "ivf",
+      "params": {
+        "nlist": 500,
+        "nprobe": 8
+      },
+      "recall@10": 0.3187,
+      "p50_ms": 0.586,
+      "p95_ms": 0.906,
+      "build_s": 6.44,
+      "memory_mb": 386.77
+    },
+    {
+      "index": "ivf",
+      "params": {
+        "nlist": 500,
+        "nprobe": 32
+      },
+      "recall@10": 0.7719,
+      "p50_ms": 1.781,
+      "p95_ms": 2.176,
+      "build_s": 6.44,
+      "memory_mb": 386.77
+    },
+    {
+      "index": "ivf",
+      "params": {
+        "nlist": 500,
+        "nprobe": 128
+      },
+      "recall@10": 1.0,
+      "p50_ms": 6.38,
+      "p95_ms": 7.455,
+      "build_s": 6.44,
+      "memory_mb": 386.77
+    },
+    {
+      "index": "ivf-pq",
+      "params": {
+        "nlist": 500,
+        "m": 48,
+        "nbits": 8,
+        "nprobe": 8
+      },
+      "recall@10": 0.2281,
+      "p50_ms": 0.278,
+      "p95_ms": 0.389,
+      "build_s": 41.82,
+      "memory_mb": 15.17
+    },
+    {
+      "index": "ivf-pq",
+      "params": {
+        "nlist": 500,
+        "m": 48,
+        "nbits": 8,
+        "nprobe": 32
+      },
+      "recall@10": 0.6375,
+      "p50_ms": 1.0,
+      "p95_ms": 1.342,
+      "build_s": 41.82,
+      "memory_mb": 15.17
+    },
+    {
+      "index": "ivf-pq",
+      "params": {
+        "nlist": 500,
+        "m": 48,
+        "nbits": 8,
+        "nprobe": 128
+      },
+      "recall@10": 0.7531,
+      "p50_ms": 4.884,
+      "p95_ms": 6.003,
+      "build_s": 41.82,
+      "memory_mb": 15.17
+    },
+    {
+      "index": "ivf-pq+refine",
+      "params": {
+        "nprobe": 32,
+        "rescore_top": 100
+      },
+      "recall@10": 0.7391,
+      "p50_ms": 1.064,
+      "p95_ms": 1.475,
+      "build_s": 41.82,
+      "memory_mb": 399.17
+    }
+  ]
+}

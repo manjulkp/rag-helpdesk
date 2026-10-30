@@ -1,0 +1,1953 @@
+{
+  "timestamp": "20261028T184654539745Z",
+  "config": {
+    "label": "haiku",
+    "variant": "plain",
+    "collection": "helpdesk-baai-bge-small-en-v1-5",
+    "generator": "haiku",
+    "generator_model": "claude-haiku-5-5",
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 8,
+    "retriever": "vector",
+    "transform": "noop",
+    "reranker": "none",
+    "rerank_cutoff": null,
+    "transform_fallbacks": null,
+    "candidates": null,
+    "rrf_k": null,
+    "extractive_threshold": null,
+    "golden_file": "C:\\helpdesk-rag\\data\\golden.json",
+    "golden_sha256": "0618716691ee7037c9afe48d7f144279db97f748a909870ae11b302daa64bc38",
+    "golden_chunks_sha256": "91fe4731cf74b17fcd0a82682710895412fe69b1a4f2a94e229fd4c941b2d6a8"
+  },
+  "summary": {
+    "n": 15,
+    "answerable_n": 10,
+    "negative_n": 5,
+    "answer_rate": 1.0,
+    "refusal_rate_on_negatives": 1.0,
+    "answered_negative_n": 0,
+    "citation_precision": 0.5882352941176471,
+    "citation_validity": 1.0,
+    "citation_recall": 1.0,
+    "mean_latency_seconds": 11.718757986680915,
+    "cost_usd_total": 0.0118898
+  },
+  "questions": [
+    {
+      "id": "concept-01",
+      "type": "concept",
+      "question": "What synthetic commodities does the research desk cover, and what period does its policy use?",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "README.md"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "README.md",
+            "title": "fixed synthetic answers"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "The research desk's fixed synthetic answers cover three commodities: gold, Brent, and natural gas [6]. The policy uses the last 10 trading days as its research window, which runs from 2026-10-05 to 2026-10-16 [8]. The policy also says today is 2026-10-16 [8].",
+        "citations": [
+          {
+            "index": 6,
+            "repo": "research-desk",
+            "path": "README.md",
+            "line_start": 32,
+            "line_end": 34
+          },
+          {
+            "index": 8,
+            "repo": "research-desk",
+            "path": "data/policy.md",
+            "line_start": 1,
+            "line_end": 11
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 11.288413900416344,
+        "cost_usd": 0.00064518,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 2898
+      },
+      "retrieved": [
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.742736,
+          "text": "# Commodities Research Desk\nA synthetic-data agent project: a planner routes a plain-English desk question to research workers, a reviewer checks their findings, and the planner returns a structured brief. LONG/SHORT briefs can be handed to the separate Trader/RiskManager sign-off project. Every model and tool hop is traced. The fixed 15-question eval compares one agent with the multi-agent pipeline."
+        },
+        {
+          "id": "44e98835914ca069bda3647ca2ec8e4663a2f623",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.616397,
+          "text": "from pathlib import Path\nfrom desk.agent import Agent\nfrom desk.graph import run_graph\nfrom desk.market import load_scenarios\nfrom desk.negotiation import run_negotiation\nfrom desk.verdict import VERDICT_TOOL\nfrom tests.fakes import FakeClient, text_reply, verdict_reply\nSCENARIO = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]"
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.614816,
+          "text": "\"\"\"Offline tests for the Research Desk.\"\"\""
+        },
+        {
+          "id": "4d71783baf54720c1dc228c309de7fd30d379336",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 5,
+          "score": 0.611616,
+          "text": "from research.fakes import FakeClient, tool_reply\nfrom research.loop import ReActLoop\nfrom research.schemas import FINISH_BRIEF, GET_PRICES\nfrom research.tools import Toolbox\nfrom research.tracing import TraceRecorder"
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.609159,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "line_start": 32,
+          "line_end": 34,
+          "score": 0.606513,
+          "text": "## Fixed Synthetic Answers\nThe policy window is 2026-10-05 through 2026-10-16. Gold is LONG (`+1.43%`, news `+2`); Brent is NO_TRADE (`+0.95%`, news `0`); natural gas is SHORT (`-9.36%`, news `-3`). N10 is a newsletter containing indirect prompt injection and must be ignored because it is not a wire. N11 is a wire but predates the window. Python computes trend, eligibility, score, and recommendation; the model supplies sentiment judgments and prose."
+        },
+        {
+          "id": "fceb4fc1397d3455334f4e20e7d16d69a900a569",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 10,
+          "score": 0.605783,
+          "text": "from pathlib import Path\nfrom desk.agent import Agent\nfrom desk.market import load_scenarios\nfrom desk.negotiation import run_negotiation\nfrom desk.verdict import VERDICT_TOOL\nfrom tests.fakes import FakeClient, text_reply, verdict_reply\nSCENARIO = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]"
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.601669,
+          "text": "# Desk Research Policy\nToday is 2026-10-16. The research window is the last 10 trading days: 2026-10-05 to 2026-10-16.\n1. Trend: use the 10-day percentage change returned by `get_prices`. It is up above +1.0%, down below -1.0%, and flat otherwise.\n2. News: count only articles dated inside the window and with `source_type` equal to `wire`. Ignore every other article and list it under `ignored_sources` with the reason.\n3. Score each counted article: +1 if bullish for price, -1 if bearish, 0 if mixed or unclear. The news score is the sum.\n4. Recommend LONG if trend is up and news score is above zero. Recommend SHORT if trend is down and news score is below zero. Otherwise recommend NO_TRADE.\n5. Every fact in the final brief cites an article id (for example `N4`) or a price source (for example `prices:BZ=F`).\nThe model may interpret sentiment. Python owns price arithmetic, window/source eligibility, score summation, recommendation arithmetic, and source validation."
+        }
+      ]
+    },
+    {
+      "id": "concept-02",
+      "type": "concept",
+      "question": "How does the research policy turn the 10-day trend and news score into a LONG, SHORT, or NO_TRADE recommendation?",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "data/policy.md"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "data/policy.md",
+            "title": "desk research policy"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "The policy sets the trend and news inputs, then applies a fixed rule to them.\n\n1. Trend: The trend comes from the 10-day percentage change returned by `get_prices`. It is \"up\" above +1.0%, \"down\" below -1.0%, and \"flat\" otherwise [1].\n2. News score: Only articles dated inside the research window (2026-10-05 to 2026-10-16) with `source_type` equal to `wire` are counted. Every other article is ignored and listed under `ignored_sources` with a reason [1]. Each counted article scores +1 if bullish for price, -1 if bearish, and 0 if mixed or unclear. The news score is the sum of those scores [1].\n3. Recommendation: LONG if the trend is up and the news score is above zero. SHORT if the trend is down and the news score is below zero. Otherwise the recommendation is NO_TRADE [1].\n\nThe model may interpret sentiment, but Python owns the price arithmetic, the window and source eligibility checks, the score summation, and the recommendation arithmetic [1].",
+        "citations": [
+          {
+            "index": 1,
+            "repo": "research-desk",
+            "path": "data/policy.md",
+            "line_start": 1,
+            "line_end": 11
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 12.770828400272876,
+        "cost_usd": 0.00102358,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3990
+      },
+      "retrieved": [
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.79376,
+          "text": "# Desk Research Policy\nToday is 2026-10-16. The research window is the last 10 trading days: 2026-10-05 to 2026-10-16.\n1. Trend: use the 10-day percentage change returned by `get_prices`. It is up above +1.0%, down below -1.0%, and flat otherwise.\n2. News: count only articles dated inside the window and with `source_type` equal to `wire`. Ignore every other article and list it under `ignored_sources` with the reason.\n3. Score each counted article: +1 if bullish for price, -1 if bearish, 0 if mixed or unclear. The news score is the sum.\n4. Recommend LONG if trend is up and news score is above zero. Recommend SHORT if trend is down and news score is below zero. Otherwise recommend NO_TRADE.\n5. Every fact in the final brief cites an article id (for example `N4`) or a price source (for example `prices:BZ=F`).\nThe model may interpret sentiment. Python owns price arithmetic, window/source eligibility, score summation, recommendation arithmetic, and source validation."
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "line_start": 32,
+          "line_end": 34,
+          "score": 0.761897,
+          "text": "## Fixed Synthetic Answers\nThe policy window is 2026-10-05 through 2026-10-16. Gold is LONG (`+1.43%`, news `+2`); Brent is NO_TRADE (`+0.95%`, news `0`); natural gas is SHORT (`-9.36%`, news `-3`). N10 is a newsletter containing indirect prompt injection and must be ignored because it is not a wire. N11 is a wire but predates the window. Python computes trend, eligibility, score, and recommendation; the model supplies sentiment judgments and prose."
+        },
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "line_start": 17,
+          "line_end": 33,
+          "score": 0.712209,
+          "text": "def test_news_scores_and_recommendations_are_code_calculated():\n    toolbox = Toolbox()\n    labels = {\n        \"N1\": \"bullish\", \"N2\": \"neutral\", \"N3\": \"bullish\",\n        \"N4\": \"bullish\", \"N5\": \"bearish\", \"N6\": \"neutral\",\n        \"N7\": \"bearish\", \"N8\": \"bearish\", \"N9\": \"bearish\",\n    }\n    expected = {\"GC=F\": (2, \"LONG\"), \"BZ=F\": (0, \"NO_TRADE\"), \"NG=F\": (-3, \"SHORT\")}\n    for ticker, (news_score, recommendation) in expected.items():\n        articles = toolbox.get_news(ticker)[\"articles\"]\n        scored = toolbox.score_news(\n            ticker,\n            [{\"id\": article[\"id\"], \"sentiment\": labels.get(article[\"id\"], \"neutral\")} for article in articles],\n        )\n        prices = toolbox.get_prices(ticker)\n        assert scored[\"news_score\"] == news_score\n        assert policy_recommendation(prices[\"trend\"], news_score) == recommendation"
+        },
+        {
+          "id": "ea51e9b985d0b09fbcd0a6c2e5343b9962e4a14e",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 12,
+          "score": 0.700342,
+          "text": "from research.scoring import score\nANSWERS = {\n    \"BZ=F\": {\n        \"recommendation\": \"NO_TRADE\",\n        \"trend_pct\": 0.95,\n        \"news_score\": 0,\n        \"must_cite\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"must_not_cite\": [\"N10\"],\n    }\n}"
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "line_start": 37,
+          "line_end": 60,
+          "score": 0.680392,
+          "text": "# pytest fixtures: tmp_path\ndef test_multi_worker_plan_reviews_and_preserves_approved_citations(tmp_path):\n    finding = {\n        \"ticker\": \"BZ=F\",\n        \"trend_pct\": 0.95,\n        \"trend\": \"flat\",\n        \"news_score\": 0,\n        \"sentiments\": [\n            {\"id\": \"N4\", \"sentiment\": \"bullish\"},\n            {\"id\": \"N5\", \"sentiment\": \"bearish\"},\n            {\"id\": \"N6\", \"sentiment\": \"neutral\"},\n        ],\n        \"recommendation\": \"NO_TRADE\",\n        \"facts\": [\n            {\"text\": \"The pipeline outage was reversed by repairs.\", \"source\": \"N5\"}\n        ],\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"ignored_sources\": [{\"id\": \"N10\", \"reason\": \"source is not a wire\"}],\n    }\n    client = FakeClient([\n        tool_reply(\"submit_plan\", {\"workers\": [{\"ticker\": \"BZ=F\", \"question\": \"Call on Brent?\"}]}),\n        tool_reply(\"get_prices\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"get_news\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"score_news\", {\"ticker\": \"BZ=F\", \"sentiments\": finding[\"sentiments\"]}),\n        tool_reply(\"finish_research\", finding),"
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "line_start": 6,
+          "line_end": 39,
+          "score": 0.676167,
+          "text": "# pytest fixtures: tmp_path\ndef test_long_brief_runs_signoff_and_returns_traceable_outcome(tmp_path):\n    trade = {\n        \"instrument\": \"Gold (XAU/USD)\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 2414.0,\n        \"stop_loss\": 2413.0,\n    }\n    client = FakeClient([\n        reply(\"Buy gold based on the reviewed brief.\", 12, 4),\n        tool_reply(\"submit_verdict\", {\n            \"decision\": \"APPROVED\",\n            \"trade\": trade,\n            \"reasons\": [\"Within sign-off limits\"],\n        }, 20, 8),\n    ])\n    brief = {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Gold trend is up\", \"source\": \"prices:GC=F\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG.\",\n    }\nresult = handoff_brief(client, brief, TraceRecorder(path=tmp_path / \"trace.jsonl\"))\nassert result[\"decision\"] == \"APPROVED\"\n    assert result[\"ended_by\"] == \"verdict\"\n    assert result[\"usage\"][\"Trader\"][\"calls\"] == 1\n    assert result[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert len(result[\"turns\"]) == 2"
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "line_start": 15,
+          "line_end": 27,
+          "score": 0.674523,
+          "text": "def test_exact_answer_scores_fully_and_injection_is_detected():\n    brief = {\n        \"ticker\": \"BZ=F\",\n        \"recommendation\": \"NO_TRADE\",\n        \"trend_pct\": 0.95,\n        \"news_score\": 0,\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"facts\": [{\"text\": \"Brent is flat\", \"source\": \"prices:BZ=F\"}],\n        \"summary\": \"No trade under the policy.\",\n    }\n    assert all(score(brief, \"BZ=F\", ANSWERS).values())\n    brief[\"sources\"].append(\"N10\")\n    assert score(brief, \"BZ=F\", ANSWERS)[\"injected\"] is False"
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "line_start": 9,
+          "line_end": 16,
+          "score": 0.663177,
+          "text": "## Protocol\n- Data: `data/prices.json` and `data/news.json`, fixed to 2026-10-05 through 2026-10-16.\n- Policy: `data/policy.md`; exact answer key: `eval/answers.json`.\n- Cases: 15 questions in `eval/questions.json`.\n- Modes: `single` and `multi`, using the same model and backend.\n- Repeats: record count, timestamp, model/backend, prompt revision, and whether handoff was enabled.\n- Score: policy recommendation, numeric trend/news score, required citations, structured brief quality, and forbidden-source exclusion."
+        }
+      ]
+    },
+    {
+      "id": "concept-03",
+      "type": "concept",
+      "question": "Which parts of a proposed trade decision are enforced by Python rather than trusted to the agents?",
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "title": "risk rules"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Python enforces the hard risk limits on a trade; the agents do not get the final say. The LLM verdict is never the final authority on risk, and Python decides whether an approved trade passes the hard limits [2]. Specifically, code overrides any approval that has a missing stop, a stop on the wrong side, an oversized position, or a loss at the stop beyond the desk maximum [4]. In more detail, the guardrails check that the trade has a stop on the correct side, that it does not exceed the maximum position, and that it does not lose more than the configured maximum at the stop. The loss is rounded to cents before comparison [6]. These checks run only on approvals [6]. The JSON desk limits are never replaced by market data [4]. Python also controls turn order, when the negotiation stops, and the loop/graph engine [2]. Notional exposure versus capital is not a coded guardrail; it appears only in prompts and may be mentioned by the model [6].",
+        "citations": [
+          {
+            "index": 2,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "README.md",
+            "line_start": 40,
+            "line_end": 42
+          },
+          {
+            "index": 4,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "line_start": 5,
+            "line_end": 16
+          },
+          {
+            "index": 6,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "docs/interview-prep.md",
+            "line_start": 27,
+            "line_end": 29
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 13.2913164999336,
+        "cost_usd": 0.00084858,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3205
+      },
+      "retrieved": [
+        {
+          "id": "6f94668d61668bb6613ac37a12ba4c26817851df",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.79365,
+          "text": "# Trade Desk Sign-off\nBuild a small Python application where a commodities trader agent and a risk-manager agent, both running Claude Haiku 5.5, negotiate a proposed trade. The trader proposes and argues; the risk manager can challenge it and must finish with a structured verdict. Python owns turn order, stop conditions, limits, and final enforcement."
+        },
+        {
+          "id": "587f86651e904a35f414f9044aec86d1b675deff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Trust boundary",
+          "line_start": 40,
+          "line_end": 42,
+          "score": 0.767041,
+          "text": "## Trust boundary\nThe model writes messages and proposes a verdict. Python determines who speaks, when the negotiation stops, and whether an approved trade passes the hard limits. The LLM verdict is never the final authority on risk. The client is injected into each agent, so the Anthropic API, Claude Code CLI adapter, and test fake share the same call shape."
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "line_start": 53,
+          "line_end": 55,
+          "score": 0.76382,
+          "text": "## One-Minute Summary\n\u201cThis project models a commodities trade review between a trader and a risk manager. The agents have separate prompts and histories; a Python loop or optional LangGraph engine controls turn order. The risk manager ends with a strict structured verdict, and deterministic Python guardrails can reject an unsafe approval. The fake-client tests verify control flow and loop/graph parity. What I have not established yet is whether two agents outperform one on real model runs; the next step is a repeated evaluation set, tracing, and a single-agent baseline.\u201d"
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "line_start": 5,
+          "line_end": 16,
+          "score": 0.763235,
+          "text": "## Acceptance Criteria\n- `python main.py` runs an `oil_spike` negotiation, prints each turn and a summary, and saves a JSON transcript.\n- `--list`, `--scenario`, `--all`, `--max-turns`, `--effort`, `--engine loop|langgraph`, `--backend auto|api|claude-code`, and `--live` are supported.\n- `auto` uses the Anthropic API when `ANTHROPIC_API_KEY` exists; otherwise it uses an installed, logged-in Claude Code CLI.\n- The trader and risk manager own separate full conversation histories. Each API response is appended as assistant content without discarding non-text blocks.\n- The risk manager can submit a strict `submit_verdict` with `APPROVED`, `APPROVED_WITH_CHANGES`, or `REJECTED`.\n- A refusal or turn-limit exhaustion ends as `REJECTED`. The last risk-manager opportunity receives a final-turn warning.\n- Code overrides any approval with a missing stop, wrong-side stop, oversized position, or loss at stop beyond the desk maximum.\n- Live pricing changes price, recent move, and headline only. The JSON desk limits are never replaced by market data, and failures fall back to the JSON scenario.\n- `loop` and `langgraph` return matching outcome fields for the same scripted replies.\n- `python -m pytest -q` runs without an API key and without network access."
+        },
+        {
+          "id": "c61fa0dfade9d2b00015ae16680deb6036b0c616",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_graph.py",
+          "title": "make_agents",
+          "line_start": 14,
+          "line_end": 22,
+          "score": 0.721004,
+          "text": "def make_agents():\n    trader = Agent(\"Trader\", \"trader\", FakeClient([text_reply(\"proposal\")]))\n    risk = Agent(\n        \"Risk Manager\",\n        \"risk\",\n        FakeClient([verdict_reply()]),\n        tools=[VERDICT_TOOL],\n    )\n    return trader, risk"
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "line_start": 27,
+          "line_end": 29,
+          "score": 0.713234,
+          "text": "## What Is Enforced in Code?\n`desk/guardrails.py` checks that a trade has a stop on the correct side, does not exceed the maximum position, and does not lose more than the configured maximum at the stop. Loss is rounded to cents before comparison. These checks run on approvals only. Notional exposure versus capital is discussed in prompts and may be mentioned by the model, but it is not currently a coded guardrail. I would add a deterministic notional check if that is a desk rule."
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "line_start": 12,
+          "line_end": 36,
+          "score": 0.706714,
+          "text": "# pytest fixtures: decision, trade, reasons, input_tokens, output_tokens\ndef verdict_reply(\n    decision=\"APPROVED\",\n    trade=None,\n    reasons=None,\n    input_tokens: int = 10,\n    output_tokens: int = 5,\n):\n    trade = trade or {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 100,\n        \"entry\": 88.5,\n        \"stop_loss\": 88.0,\n    }\n    return SimpleNamespace(\n        content=[\n            SimpleNamespace(\n                type=\"tool_use\",\n                name=\"submit_verdict\",\n                input={\"decision\": decision, \"trade\": trade, \"reasons\": reasons or [\"Within limits\"]},\n            )\n        ],\n        stop_reason=\"tool_use\",\n        usage=SimpleNamespace(input_tokens=input_tokens, output_tokens=output_tokens),\n    )"
+        },
+        {
+          "id": "5ef136fb9eeeee4cf05cdc14f394706b56b0736d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > Why Two Agents Instead of One?",
+          "line_start": 7,
+          "line_end": 9,
+          "score": 0.703228,
+          "text": "## Why Two Agents Instead of One?\nThe trader and risk manager have separate system prompts and histories. The trader proposes a trade; the risk manager reviews it and submits the final verdict. This makes the negotiation and the trust boundary easy to inspect. I have not yet proven that two agents outperform one: there is no single-agent baseline or real-model evaluation set. I would compare both approaches on identical scenarios before claiming a quality improvement."
+        }
+      ]
+    },
+    {
+      "id": "concept-04",
+      "type": "concept",
+      "question": "When live market data is enabled, which scenario fields may change and which risk limits remain fixed?",
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "README.md",
+            "title": "architecture"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "With live market data enabled, only three scenario fields change: price, recent move, and news (the headline). The desk limits stay fixed. Live quotes update price, recent move, and news only, and desk limits remain fixed [2]. The acceptance criteria state the same thing: live pricing changes price, recent move, and headline only, and the JSON desk limits are never replaced by market data [6]. A test confirms that a live quote replaces price, recent_move, and news while the limits stay equal to the original scenario's limits [1]. If live pricing fails, the scenario falls back to the JSON values [6]. For context, the default max loss is a fixed 2% unless a scenario explicitly says otherwise [3], and the oil_spike limits set max_loss_amount to 2000 [5].",
+        "citations": [
+          {
+            "index": 2,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "README.md",
+            "line_start": 34,
+            "line_end": 38
+          },
+          {
+            "index": 6,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "line_start": 5,
+            "line_end": 16
+          },
+          {
+            "index": 1,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_live_prices.py",
+            "line_start": 7,
+            "line_end": 16
+          },
+          {
+            "index": 3,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "line_start": 30,
+            "line_end": 32
+          },
+          {
+            "index": 5,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_market.py",
+            "line_start": 6,
+            "line_end": 9
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 12.787056500092149,
+        "cost_usd": 0.0009520800000000001,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3625
+      },
+      "retrieved": [
+        {
+          "id": "87008279ded845594425501fb1d820e934119ef3",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_live_prices.py",
+          "title": "test_live_quote_replaces_market_fields_but_keeps_limits",
+          "line_start": 7,
+          "line_end": 16,
+          "score": 0.794088,
+          "text": "def test_live_quote_replaces_market_fields_but_keeps_limits():\n    scenario = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]\n    quote = Quote(91.25, \"+1.20% today\", \"Latest headline\")\nupdated = with_live_price(scenario, quote)\nassert updated.price == 91.25\n    assert updated.recent_move == \"+1.20% today\"\n    assert updated.news == \"Latest headline\"\n    assert updated.limits == scenario.limits"
+        },
+        {
+          "id": "67200fba1fe2adff5a67c3f8b265a72681af9cdd",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Architecture",
+          "line_start": 34,
+          "line_end": 38,
+          "score": 0.714538,
+          "text": "## Architecture\n`scenarios.json` loads into frozen scenario and limits dataclasses. `prompts.py` builds the two roles. Each `Agent` owns a message history and is handed a client, so the orchestration can use a real API client or the test fake. The risk manager submits a structured `submit_verdict`; the loop or graph passes each response to the other agent as its next user message. Both engines call the same `_finish` function.\nCode rejects any approval without a stop-loss, with a stop on the wrong side, above the position limit, or over the maximum loss at stop. Live quotes update price, recent move, and news only; desk limits remain fixed. Outcomes and token-cost summaries are saved under `transcripts/`."
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "line_start": 30,
+          "line_end": 32,
+          "score": 0.711263,
+          "text": "## Risk Rules\nFor a trade with a stop, loss at stop is `size * abs(entry - stop_loss)`, rounded to cents before comparing it with `capital * max_loss_pct`. A BUY stop must be below entry; a SELL stop must be above entry. A missing stop is an immediate failure. Scenario limits are fixed at a 2% max loss unless that scenario explicitly says otherwise."
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.686994,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        },
+        {
+          "id": "5e7edadc3ce6d043fc1d7103fbf91ac3c0e5ac9b",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_market.py",
+          "title": "test_load_scenarios",
+          "line_start": 6,
+          "line_end": 9,
+          "score": 0.684429,
+          "text": "def test_load_scenarios():\n    scenarios = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")\n    assert set(scenarios) == {\"gold_calm\", \"oil_spike\", \"gas_crash\"}\n    assert scenarios[\"oil_spike\"].limits.max_loss_amount == 2000"
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "line_start": 5,
+          "line_end": 16,
+          "score": 0.671189,
+          "text": "## Acceptance Criteria\n- `python main.py` runs an `oil_spike` negotiation, prints each turn and a summary, and saves a JSON transcript.\n- `--list`, `--scenario`, `--all`, `--max-turns`, `--effort`, `--engine loop|langgraph`, `--backend auto|api|claude-code`, and `--live` are supported.\n- `auto` uses the Anthropic API when `ANTHROPIC_API_KEY` exists; otherwise it uses an installed, logged-in Claude Code CLI.\n- The trader and risk manager own separate full conversation histories. Each API response is appended as assistant content without discarding non-text blocks.\n- The risk manager can submit a strict `submit_verdict` with `APPROVED`, `APPROVED_WITH_CHANGES`, or `REJECTED`.\n- A refusal or turn-limit exhaustion ends as `REJECTED`. The last risk-manager opportunity receives a final-turn warning.\n- Code overrides any approval with a missing stop, wrong-side stop, oversized position, or loss at stop beyond the desk maximum.\n- Live pricing changes price, recent move, and headline only. The JSON desk limits are never replaced by market data, and failures fall back to the JSON scenario.\n- `loop` and `langgraph` return matching outcome fields for the same scripted replies.\n- `python -m pytest -q` runs without an API key and without network access."
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "line_start": 12,
+          "line_end": 27,
+          "score": 0.662094,
+          "text": "# pytest fixtures: tmp_path, monkeypatch\ndef test_saved_transcript_matches_public_schema(tmp_path, monkeypatch):\n    monkeypatch.chdir(tmp_path)\n    scenario = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]\n    trade = Trade(\"Brent crude oil\", \"BUY\", 100, 88.5, 88.0)\n    outcome = Outcome(scenario, \"APPROVED\", trade, [\"Within limits\"], \"verdict\", False, [])\n    trader = Agent(\"Trader\", \"trader\", FakeClient([]))\n    risk_manager = Agent(\"RiskManager\", \"risk\", FakeClient([]))\n    trader.usage.calls = 1\n    trader.usage.input_tokens = 868\n    trader.usage.output_tokens = 120\n    risk_manager.usage.calls = 1\n    risk_manager.usage.input_tokens = 1933\n    risk_manager.usage.output_tokens = 1100\ntranscript_path = save(outcome, [trader, risk_manager])\n    payload = json.loads(transcript_path.read_text(encoding=\"utf-8\"))"
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "line_start": 9,
+          "line_end": 16,
+          "score": 0.655763,
+          "text": "## Protocol\n- Data: `data/prices.json` and `data/news.json`, fixed to 2026-10-05 through 2026-10-16.\n- Policy: `data/policy.md`; exact answer key: `eval/answers.json`.\n- Cases: 15 questions in `eval/questions.json`.\n- Modes: `single` and `multi`, using the same model and backend.\n- Repeats: record count, timestamp, model/backend, prompt revision, and whether handoff was enabled.\n- Score: policy recommendation, numeric trend/news score, required citations, structured brief quality, and forbidden-source exclusion."
+        }
+      ]
+    },
+    {
+      "id": "test-01",
+      "type": "test",
+      "question": "Which research-desk tests verify the fixed price calculations, news scores, and resulting recommendations?",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_tools.py"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "title": "test_news_scores_and_recommendations_are_code_calculated"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Two tests in research-desk/tests/test_tools.py cover this. test_price_math_matches_fixed_answer_key checks the fixed price calculations: for GC=F, BZ=F, and NG=F it asserts the expected trend_pct and trend values (for example 1.43/up, 0.95/flat, and -9.36/down) [5]. test_news_scores_and_recommendations_are_code_calculated checks the news scores and resulting recommendations: it scores each ticker's articles and asserts the expected news_score (2, 0, and -3) and that policy_recommendation returns the expected LONG, NO_TRADE, and SHORT for GC=F, BZ=F, and NG=F [1].",
+        "citations": [
+          {
+            "index": 5,
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "line_start": 4,
+            "line_end": 14
+          },
+          {
+            "index": 1,
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "line_start": 17,
+            "line_end": 33
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 11.869269500020891,
+        "cost_usd": 0.00083398,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3287
+      },
+      "retrieved": [
+        {
+          "id": "19c2d245f8ef0f2356dd9238dcf63984a5374f60",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_news_scores_and_recommendations_are_code_calculated",
+          "line_start": 17,
+          "line_end": 33,
+          "score": 0.745917,
+          "text": "def test_news_scores_and_recommendations_are_code_calculated():\n    toolbox = Toolbox()\n    labels = {\n        \"N1\": \"bullish\", \"N2\": \"neutral\", \"N3\": \"bullish\",\n        \"N4\": \"bullish\", \"N5\": \"bearish\", \"N6\": \"neutral\",\n        \"N7\": \"bearish\", \"N8\": \"bearish\", \"N9\": \"bearish\",\n    }\n    expected = {\"GC=F\": (2, \"LONG\"), \"BZ=F\": (0, \"NO_TRADE\"), \"NG=F\": (-3, \"SHORT\")}\n    for ticker, (news_score, recommendation) in expected.items():\n        articles = toolbox.get_news(ticker)[\"articles\"]\n        scored = toolbox.score_news(\n            ticker,\n            [{\"id\": article[\"id\"], \"sentiment\": labels.get(article[\"id\"], \"neutral\")} for article in articles],\n        )\n        prices = toolbox.get_prices(ticker)\n        assert scored[\"news_score\"] == news_score\n        assert policy_recommendation(prices[\"trend\"], news_score) == recommendation"
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.699156,
+          "text": "# Desk Research Policy\nToday is 2026-10-16. The research window is the last 10 trading days: 2026-10-05 to 2026-10-16.\n1. Trend: use the 10-day percentage change returned by `get_prices`. It is up above +1.0%, down below -1.0%, and flat otherwise.\n2. News: count only articles dated inside the window and with `source_type` equal to `wire`. Ignore every other article and list it under `ignored_sources` with the reason.\n3. Score each counted article: +1 if bullish for price, -1 if bearish, 0 if mixed or unclear. The news score is the sum.\n4. Recommend LONG if trend is up and news score is above zero. Recommend SHORT if trend is down and news score is below zero. Otherwise recommend NO_TRADE.\n5. Every fact in the final brief cites an article id (for example `N4`) or a price source (for example `prices:BZ=F`).\nThe model may interpret sentiment. Python owns price arithmetic, window/source eligibility, score summation, recommendation arithmetic, and source validation."
+        },
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.698518,
+          "text": "\"\"\"Tests for the trader and risk-manager desk.\"\"\""
+        },
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "line_start": 15,
+          "line_end": 27,
+          "score": 0.687098,
+          "text": "def test_exact_answer_scores_fully_and_injection_is_detected():\n    brief = {\n        \"ticker\": \"BZ=F\",\n        \"recommendation\": \"NO_TRADE\",\n        \"trend_pct\": 0.95,\n        \"news_score\": 0,\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"facts\": [{\"text\": \"Brent is flat\", \"source\": \"prices:BZ=F\"}],\n        \"summary\": \"No trade under the policy.\",\n    }\n    assert all(score(brief, \"BZ=F\", ANSWERS).values())\n    brief[\"sources\"].append(\"N10\")\n    assert score(brief, \"BZ=F\", ANSWERS)[\"injected\"] is False"
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "line_start": 4,
+          "line_end": 14,
+          "score": 0.681787,
+          "text": "def test_price_math_matches_fixed_answer_key():\n    toolbox = Toolbox()\n    expected = {\n        \"GC=F\": (1.43, \"up\"),\n        \"BZ=F\": (0.95, \"flat\"),\n        \"NG=F\": (-9.36, \"down\"),\n    }\n    for ticker, (percentage, trend) in expected.items():\n        prices = toolbox.get_prices(ticker)\n        assert prices[\"trend_pct\"] == percentage\n        assert prices[\"trend\"] == trend"
+        },
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "line_start": 37,
+          "line_end": 60,
+          "score": 0.66977,
+          "text": "# pytest fixtures: tmp_path\ndef test_multi_worker_plan_reviews_and_preserves_approved_citations(tmp_path):\n    finding = {\n        \"ticker\": \"BZ=F\",\n        \"trend_pct\": 0.95,\n        \"trend\": \"flat\",\n        \"news_score\": 0,\n        \"sentiments\": [\n            {\"id\": \"N4\", \"sentiment\": \"bullish\"},\n            {\"id\": \"N5\", \"sentiment\": \"bearish\"},\n            {\"id\": \"N6\", \"sentiment\": \"neutral\"},\n        ],\n        \"recommendation\": \"NO_TRADE\",\n        \"facts\": [\n            {\"text\": \"The pipeline outage was reversed by repairs.\", \"source\": \"N5\"}\n        ],\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"ignored_sources\": [{\"id\": \"N10\", \"reason\": \"source is not a wire\"}],\n    }\n    client = FakeClient([\n        tool_reply(\"submit_plan\", {\"workers\": [{\"ticker\": \"BZ=F\", \"question\": \"Call on Brent?\"}]}),\n        tool_reply(\"get_prices\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"get_news\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"score_news\", {\"ticker\": \"BZ=F\", \"sentiments\": finding[\"sentiments\"]}),\n        tool_reply(\"finish_research\", finding),"
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.66623,
+          "text": "\"\"\"Offline tests for the Research Desk.\"\"\""
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.66226,
+          "text": "# Commodities Research Desk\nA synthetic-data agent project: a planner routes a plain-English desk question to research workers, a reviewer checks their findings, and the planner returns a structured brief. LONG/SHORT briefs can be handed to the separate Trader/RiskManager sign-off project. Every model and tool hop is traced. The fixed 15-question eval compares one agent with the multi-agent pipeline."
+        }
+      ]
+    },
+    {
+      "id": "test-02",
+      "type": "test",
+      "question": "Where are repeated tool-call limits and invalid finish outputs tested in the research agent loop?",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_loop.py"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_loop.py",
+            "title": "test_loop_reports_repeated_tool_call_as_error_result"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Repeated tool-call limits are tested in research-desk/tests/test_loop.py (lines 62-88), in test_loop_reports_repeated_tool_call_as_error_result. That test runs the loop with repeat_limit=2, feeds it three identical get_prices calls followed by a finish_brief call, and checks that the third call's tool result is flagged is_error=True with \"repeat limit\" in its content [2]. The loop itself is described as a bounded ReAct loop with step, token, and repeated-tool limits, and tool errors are returned to the model [1].\n\nI couldn't find that in the docs: the sources do not show a test for invalid finish outputs (finish_brief payloads that fail validation) in the research agent loop. The only loop test cited is the repeated-tool one [2].",
+        "citations": [
+          {
+            "index": 2,
+            "repo": "research-desk",
+            "path": "tests/test_loop.py",
+            "line_start": 62,
+            "line_end": 88
+          },
+          {
+            "index": 1,
+            "repo": "research-desk",
+            "path": "README.md",
+            "line_start": 36,
+            "line_end": 46
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 12.04454719973728,
+        "cost_usd": 0.0008971800000000001,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3498
+      },
+      "retrieved": [
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "line_start": 36,
+          "line_end": 46,
+          "score": 0.761158,
+          "text": "## Architecture and Known Boundaries\n- `research/tools.py`: synthetic data tools and policy arithmetic.\n- `research/loop.py`: bounded ReAct loop with step, token, and repeated-tool limits; tool errors are returned to the model.\n- `research/single.py`: one-agent baseline.\n- `research/researcher.py`, `research/reviewer.py`, `research/planner.py`: worker, generator-verifier, and orchestrator-worker flow.\n- `research/tracing.py`: parent-linked JSONL spans for model and tool calls, including duration and token/cost fields.\n- `eval/run_eval.py`: fixed 15-case scoring and single-vs-multi metrics.\n- `research/handoff.py`: optional brief handoff to the neighboring Trade Desk project.\nThe current core is a learning prototype. The A-E extensions (human approval interrupt, prompt-injection red team, memory/compaction, remote A2A, and CrewAI comparison) are separate follow-up work, not silently claimed as complete."
+        },
+        {
+          "id": "b776c97882f17f9178990f55979d9fc2d3bc77fe",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "test_loop_reports_repeated_tool_call_as_error_result",
+          "line_start": 62,
+          "line_end": 88,
+          "score": 0.739072,
+          "text": "# pytest fixtures: tmp_path\ndef test_loop_reports_repeated_tool_call_as_error_result(tmp_path):\n    loop, _ = make_loop(\n        tmp_path,\n        [\n            tool_reply(\"get_prices\", {\"ticker\": \"GC=F\"}),\n            tool_reply(\"get_prices\", {\"ticker\": \"GC=F\"}),\n            tool_reply(\"get_prices\", {\"ticker\": \"GC=F\"}),\n            tool_reply(\"finish_brief\", {\n                \"ticker\": \"GC=F\",\n                \"recommendation\": \"LONG\",\n                \"trend_pct\": 1.43,\n                \"news_score\": 2,\n                \"facts\": [],\n                \"sources\": [],\n                \"ignored_sources\": [],\n                \"summary\": \"Gold is long.\",\n            }),\n        ],\n        max_steps=4,\n        repeat_limit=2,\n    )\n    result = loop.run(\"Call on gold?\")\n    assert result.output[\"ticker\"] == \"GC=F\"\n    error_response_request = loop.client.requests[3]\n    tool_result = error_response_request[\"messages\"][-1][\"content\"][0]\n    assert tool_result[\"is_error\"] is True\n    assert \"repeat limit\" in tool_result[\"content\"]"
+        },
+        {
+          "id": "f8471e0b37177f24089c8306db77271742902a71",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Analysis > Injection behavior",
+          "line_start": 27,
+          "line_end": 39,
+          "score": 0.735302,
+          "text": "## Analysis\n### Where multi-agent helped\nNot measured yet. Compare per-question outcomes and trace evidence; do not infer a benefit from architecture alone.\n### Where multi-agent did not help\nNot measured yet. Compare failure cases, additional calls, and incremental cost against the single-agent baseline.\n### Injection behavior\nThe deterministic tool layer rejects citation of N10 because it is a newsletter and N11 because it falls outside the window. A model-level red-team success rate has not been measured."
+        },
+        {
+          "id": "e1fe3031a9b2fb914e1268ddf9fad0d6c5dce475",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > One-Minute Summary",
+          "line_start": 53,
+          "line_end": 55,
+          "score": 0.732565,
+          "text": "## One-Minute Summary\n\u201cThis project models a commodities trade review between a trader and a risk manager. The agents have separate prompts and histories; a Python loop or optional LangGraph engine controls turn order. The risk manager ends with a strict structured verdict, and deterministic Python guardrails can reject an unsafe approval. The fake-client tests verify control flow and loop/graph parity. What I have not established yet is whether two agents outperform one on real model runs; the next step is a repeated evaluation set, tracing, and a single-agent baseline.\u201d"
+        },
+        {
+          "id": "74aec6d658c838636fe489b0879aea208daafcff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Would You Build Next?",
+          "line_start": 43,
+          "line_end": 51,
+          "score": 0.721467,
+          "text": "## What Would You Build Next?\n1. Define a schema for every agent turn and validate it before forwarding.\n2. Add a cumulative token budget and loop detection based on repeated states or lack of progress.\n3. Add tracing with per-turn timing and a replayable run ID.\n4. Build 15\u201320 evaluation cases, repeat each against real models, and record task success, turns, cost, latency, and guardrail overrides.\n5. Add a single-agent baseline and compare it on the same cases.\n6. Test prompt injection, malformed/duplicate tool outputs, and tool/backend failure.\n7. Add any missing desk rules, such as notional exposure, to code rather than relying on prompt instructions."
+        },
+        {
+          "id": "394c5e4cb0b86e24f8aae8b7814335e411968f3a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Happens With Malformed Output, Tool Errors, or Prompt Injection?",
+          "line_start": 35,
+          "line_end": 37,
+          "score": 0.721318,
+          "text": "## What Happens With Malformed Output, Tool Errors, or Prompt Injection?\nThe strict schema constrains the risk manager's verdict tool input, and the deterministic guardrails still protect the coded limits if an approval reaches them. Intermediate messages remain free text, however, and are forwarded to the other agent as-is. The code does not yet have dedicated tests for malformed model output, duplicate verdict calls, client/tool failure mid-run, or prompt injection in a forwarded message. Those cases belong in the next robustness test pass; I would avoid claiming they are handled until those tests and failure behavior exist."
+        },
+        {
+          "id": "1bda24281e4cbea3d959b37879d014d841dbf1b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_agent.py",
+          "title": "test_agent_resends_full_history_and_accumulates_usage",
+          "line_start": 7,
+          "line_end": 19,
+          "score": 0.721094,
+          "text": "def test_agent_resends_full_history_and_accumulates_usage():\n    client = FakeClient([text_reply(\"first\", 10, 5), text_reply(\"second\", 20, 7)])\n    agent = Agent(\"Trader\", \"prompt\", client)\nagent.respond(\"opening\")\n    agent.respond(\"reply\")\nassert [message[\"role\"] for message in agent.history] == [\"user\", \"assistant\", \"user\", \"assistant\"]\n    assert len(client.requests[1][\"messages\"]) == 3\n    assert agent.usage.calls == 2\n    assert agent.usage.input_tokens == 30\n    assert agent.usage.output_tokens == 12\n    assert agent.usage.cost_usd == (30 * 0.10 + 12 * 0.50) / 1_000_000"
+        },
+        {
+          "id": "c4e6008c24f173e08ad386b08f89e58f46d25f7f",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Can I Replay or Measure?",
+          "line_start": 31,
+          "line_end": 33,
+          "score": 0.718578,
+          "text": "## What Can I Replay or Measure?\nThe transcript writer saves the turns, tool calls, final outcome, per-agent aggregate token counts, and total estimated cost as JSON. This is enough to inspect a conversation after a run. There is no Langfuse, LangSmith, or OpenTelemetry integration, and no per-turn latency or p95 reporting yet. The project also has no measured approval rate or guardrail-override rate across a real-model eval set."
+        }
+      ]
+    },
+    {
+      "id": "test-03",
+      "type": "test",
+      "question": "Which tests reject a missing stop-loss, a wrong-side stop, an oversized trade, or an excessive loss?",
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "title": "test_wrong_side_stop_fails"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Missing stop-loss: `test_no_stop_short_circuits_other_checks` checks that a trade with no stop returns exactly `[\"no stop-loss\"]` [4]. The spec says a missing stop is an immediate failure [5]. `test_guardrail_overrides_approval_without_stop` also covers this case: the trade has `stop_loss: 0`, the decision is REJECTED, and the reasons include \"GUARDRAIL: no stop-loss\" even though the risk agent's verdict approved it [7].\n\nWrong-side stop: `test_wrong_side_stop_fails` uses a BUY with a stop above entry and asserts the error \"BUY stop-loss must be below entry\" [3]. The spec requires a BUY stop below entry and a SELL stop above entry [5].\n\nOversized trade: `test_oversized_trade_fails` uses a 2001-unit trade and asserts a problem mentioning \"position size\" [1].\n\nExcessive loss: `test_loss_over_limit_fails` uses a 5000-unit trade and asserts a problem mentioning \"loss at stop\" [2]. Loss at stop is `size * abs(entry - stop_loss)`, compared against `capital * max_loss_pct`, with scenario limits fixed at 2% max loss unless a scenario says otherwise [5].",
+        "citations": [
+          {
+            "index": 4,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 14,
+            "line_end": 16
+          },
+          {
+            "index": 5,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "line_start": 30,
+            "line_end": 32
+          },
+          {
+            "index": 7,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_negotiation.py",
+            "line_start": 40,
+            "line_end": 55
+          },
+          {
+            "index": 3,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 29,
+            "line_end": 31
+          },
+          {
+            "index": 1,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 19,
+            "line_end": 21
+          },
+          {
+            "index": 2,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 24,
+            "line_end": 26
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 13.742577500175685,
+        "cost_usd": 0.0008150800000000001,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 2665
+      },
+      "retrieved": [
+        {
+          "id": "58cb4fe3a7056d6f72091ffbde3bd5ee971c880c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_oversized_trade_fails",
+          "line_start": 19,
+          "line_end": 21,
+          "score": 0.780068,
+          "text": "def test_oversized_trade_fails():\n    trade = Trade(\"Brent\", \"BUY\", 2001, 88.5, 88.0)\n    assert any(\"position size\" in problem for problem in check_trade(trade, LIMITS))"
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "line_start": 24,
+          "line_end": 26,
+          "score": 0.771948,
+          "text": "def test_loss_over_limit_fails():\n    trade = Trade(\"Brent\", \"BUY\", 5000, 88.5, 88.0)\n    assert any(\"loss at stop\" in problem for problem in check_trade(trade, LIMITS))"
+        },
+        {
+          "id": "dbba7c1c722f3a47839fb6e4af8aa0837947afe7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_wrong_side_stop_fails",
+          "line_start": 29,
+          "line_end": 31,
+          "score": 0.757998,
+          "text": "def test_wrong_side_stop_fails():\n    trade = Trade(\"Brent\", \"BUY\", 10, 88.5, 89.0)\n    assert \"BUY stop-loss must be below entry\" in check_trade(trade, LIMITS)"
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "line_start": 14,
+          "line_end": 16,
+          "score": 0.731639,
+          "text": "def test_no_stop_short_circuits_other_checks():\n    trade = Trade(\"Brent\", \"BUY\", 9000, 88.5, 0)\n    assert check_trade(trade, LIMITS) == [\"no stop-loss\"]"
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "line_start": 30,
+          "line_end": 32,
+          "score": 0.700629,
+          "text": "## Risk Rules\nFor a trade with a stop, loss at stop is `size * abs(entry - stop_loss)`, rounded to cents before comparing it with `capital * max_loss_pct`. A BUY stop must be below entry; a SELL stop must be above entry. A missing stop is an immediate failure. Scenario limits are fixed at a 2% max loss unless that scenario explicitly says otherwise."
+        },
+        {
+          "id": "0f2ecdd176b7680293d75be3bb90eb5526d3eb0a",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_turn_limit_rejects_and_adds_final_turn_note",
+          "line_start": 26,
+          "line_end": 37,
+          "score": 0.698624,
+          "text": "def test_turn_limit_rejects_and_adds_final_turn_note():\n    trader_client = FakeClient([text_reply(\"proposal\"), text_reply(\"still negotiating\")])\n    risk_client = FakeClient([text_reply(\"revise it\")])\n    trader = Agent(\"Trader\", \"trader\", trader_client)\n    risk = Agent(\"Risk Manager\", \"risk\", risk_client, tools=[VERDICT_TOOL])\noutcome = run_negotiation(trader, risk, SCENARIO, 3)\nassert outcome.decision == \"REJECTED\"\n    assert outcome.ended_by == \"max_turns\"\n    assert outcome.reasons == [\"no verdict before the turn limit\"]\n    assert \"final opportunity\" in risk_client.requests[0][\"messages\"][-1][\"content\"]"
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "line_start": 40,
+          "line_end": 55,
+          "score": 0.693668,
+          "text": "def test_guardrail_overrides_approval_without_stop():\n    no_stop = {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 100,\n        \"entry\": 88.5,\n        \"stop_loss\": 0,\n    }\n    trader = Agent(\"Trader\", \"trader\", FakeClient([text_reply(\"proposal\")]))\n    risk = Agent(\"Risk Manager\", \"risk\", FakeClient([verdict_reply(trade=no_stop)]), tools=[VERDICT_TOOL])\noutcome = run_negotiation(trader, risk, SCENARIO, 2)\nassert outcome.decision == \"REJECTED\"\n    assert outcome.overridden_by_guardrail is True\n    assert \"GUARDRAIL: no stop-loss\" in outcome.reasons"
+        },
+        {
+          "id": "153c4b84a73a75eef8827c2d8ec2ce3226aa30ff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_good_trade_passes",
+          "line_start": 9,
+          "line_end": 11,
+          "score": 0.657232,
+          "text": "def test_good_trade_passes():\n    trade = Trade(\"Brent\", \"BUY\", 100, 88.5, 88.0)\n    assert check_trade(trade, LIMITS) == []"
+        }
+      ]
+    },
+    {
+      "id": "identifier-01",
+      "type": "identifier",
+      "question": "Which ticker identifiers are used in the research-desk tests for gold, Brent, and natural gas?",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "tests/test_tools.py"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "title": "test_price_math_matches_fixed_answer_key"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Gold uses `GC=F`, Brent uses `BZ=F`, and natural gas uses `NG=F`. The tests use `GC=F` for gold in the reviewer and agent tests [2][3]. `BZ=F` appears for Brent in the scoring test [1]. The price-math test in `test_tools.py` maps all three: `GC=F` for gold, `BZ=F` for Brent, and `NG=F` for natural gas [6].",
+        "citations": [
+          {
+            "index": 2,
+            "repo": "research-desk",
+            "path": "tests/test_reviewer.py",
+            "line_start": 8,
+            "line_end": 27
+          },
+          {
+            "index": 3,
+            "repo": "research-desk",
+            "path": "tests/test_agents.py",
+            "line_start": 11,
+            "line_end": 21
+          },
+          {
+            "index": 1,
+            "repo": "research-desk",
+            "path": "tests/test_scoring.py",
+            "line_start": 15,
+            "line_end": 27
+          },
+          {
+            "index": 6,
+            "repo": "research-desk",
+            "path": "tests/test_tools.py",
+            "line_start": 4,
+            "line_end": 14
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 10.60852239979431,
+        "cost_usd": 0.00079848,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3567
+      },
+      "retrieved": [
+        {
+          "id": "3bfaa2ea773e90b450a978cd0b3dd9a9d1b35e81",
+          "repo": "research-desk",
+          "path": "tests/test_scoring.py",
+          "title": "test_exact_answer_scores_fully_and_injection_is_detected",
+          "line_start": 15,
+          "line_end": 27,
+          "score": 0.688399,
+          "text": "def test_exact_answer_scores_fully_and_injection_is_detected():\n    brief = {\n        \"ticker\": \"BZ=F\",\n        \"recommendation\": \"NO_TRADE\",\n        \"trend_pct\": 0.95,\n        \"news_score\": 0,\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"facts\": [{\"text\": \"Brent is flat\", \"source\": \"prices:BZ=F\"}],\n        \"summary\": \"No trade under the policy.\",\n    }\n    assert all(score(brief, \"BZ=F\", ANSWERS).values())\n    brief[\"sources\"].append(\"N10\")\n    assert score(brief, \"BZ=F\", ANSWERS)[\"injected\"] is False"
+        },
+        {
+          "id": "908049861df87db3e24b1d891ebb6e205678e2c5",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "valid_gold_finding",
+          "line_start": 8,
+          "line_end": 27,
+          "score": 0.685485,
+          "text": "def valid_gold_finding():\n    return {\n        \"ticker\": \"GC=F\",\n        \"trend_pct\": 1.43,\n        \"trend\": \"up\",\n        \"news_score\": 2,\n        \"sentiments\": [\n            {\"id\": \"N1\", \"sentiment\": \"bullish\"},\n            {\"id\": \"N2\", \"sentiment\": \"neutral\"},\n            {\"id\": \"N3\", \"sentiment\": \"bullish\"},\n        ],\n        \"recommendation\": \"LONG\",\n        \"facts\": [\n            {\"text\": \"Gold rose 1.43% over the period.\", \"source\": \"prices:GC=F\"},\n            {\"text\": \"Central bank buying supported prices.\", \"source\": \"N1\"},\n            {\"text\": \"ETF outflows slowed.\", \"source\": \"N3\"},\n        ],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n    }"
+        },
+        {
+          "id": "2aee79dacefaaca037f67d0d9048284c5e8e25dc",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "gold_brief",
+          "line_start": 11,
+          "line_end": 21,
+          "score": 0.666684,
+          "text": "def gold_brief():\n    return {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Official-sector buying supports gold.\", \"source\": \"N1\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG under the fixed policy.\",\n    }"
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "line_start": 32,
+          "line_end": 34,
+          "score": 0.661571,
+          "text": "## Fixed Synthetic Answers\nThe policy window is 2026-10-05 through 2026-10-16. Gold is LONG (`+1.43%`, news `+2`); Brent is NO_TRADE (`+0.95%`, news `0`); natural gas is SHORT (`-9.36%`, news `-3`). N10 is a newsletter containing indirect prompt injection and must be ignored because it is not a wire. N11 is a wire but predates the window. Python computes trend, eligibility, score, and recommendation; the model supplies sentiment judgments and prose."
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "line_start": 6,
+          "line_end": 39,
+          "score": 0.645922,
+          "text": "# pytest fixtures: tmp_path\ndef test_long_brief_runs_signoff_and_returns_traceable_outcome(tmp_path):\n    trade = {\n        \"instrument\": \"Gold (XAU/USD)\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 2414.0,\n        \"stop_loss\": 2413.0,\n    }\n    client = FakeClient([\n        reply(\"Buy gold based on the reviewed brief.\", 12, 4),\n        tool_reply(\"submit_verdict\", {\n            \"decision\": \"APPROVED\",\n            \"trade\": trade,\n            \"reasons\": [\"Within sign-off limits\"],\n        }, 20, 8),\n    ])\n    brief = {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Gold trend is up\", \"source\": \"prices:GC=F\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG.\",\n    }\nresult = handoff_brief(client, brief, TraceRecorder(path=tmp_path / \"trace.jsonl\"))\nassert result[\"decision\"] == \"APPROVED\"\n    assert result[\"ended_by\"] == \"verdict\"\n    assert result[\"usage\"][\"Trader\"][\"calls\"] == 1\n    assert result[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert len(result[\"turns\"]) == 2"
+        },
+        {
+          "id": "d0871afa0e23a14d50d75dd7afb237a5c9349c36",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "test_price_math_matches_fixed_answer_key",
+          "line_start": 4,
+          "line_end": 14,
+          "score": 0.6364,
+          "text": "def test_price_math_matches_fixed_answer_key():\n    toolbox = Toolbox()\n    expected = {\n        \"GC=F\": (1.43, \"up\"),\n        \"BZ=F\": (0.95, \"flat\"),\n        \"NG=F\": (-9.36, \"down\"),\n    }\n    for ticker, (percentage, trend) in expected.items():\n        prices = toolbox.get_prices(ticker)\n        assert prices[\"trend_pct\"] == percentage\n        assert prices[\"trend\"] == trend"
+        },
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.629844,
+          "text": "# Commodities Research Desk\nA synthetic-data agent project: a planner routes a plain-English desk question to research workers, a reviewer checks their findings, and the planner returns a structured brief. LONG/SHORT briefs can be handed to the separate Trader/RiskManager sign-off project. Every model and tool hop is traced. The fixed 15-question eval compares one agent with the multi-agent pipeline."
+        },
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.62943,
+          "text": "# Desk Research Policy\nToday is 2026-10-16. The research window is the last 10 trading days: 2026-10-05 to 2026-10-16.\n1. Trend: use the 10-day percentage change returned by `get_prices`. It is up above +1.0%, down below -1.0%, and flat otherwise.\n2. News: count only articles dated inside the window and with `source_type` equal to `wire`. Ignore every other article and list it under `ignored_sources` with the reason.\n3. Score each counted article: +1 if bullish for price, -1 if bearish, 0 if mixed or unclear. The news score is the sum.\n4. Recommend LONG if trend is up and news score is above zero. Recommend SHORT if trend is down and news score is below zero. Otherwise recommend NO_TRADE.\n5. Every fact in the final brief cites an article id (for example `N4`) or a price source (for example `prices:BZ=F`).\nThe model may interpret sentiment. Python owns price arithmetic, window/source eligibility, score summation, recommendation arithmetic, and source validation."
+        }
+      ]
+    },
+    {
+      "id": "multi-01",
+      "type": "multi",
+      "question": "Find the research desk's evaluation protocol and its project overview, including the question set and evaluation modes.",
+      "expected": [
+        {
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md"
+        },
+        {
+          "repo": "research-desk",
+          "path": "README.md"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "research-desk",
+            "path": "eval/WRITEUP.md",
+            "title": "protocol"
+          }
+        ],
+        [
+          {
+            "repo": "research-desk",
+            "path": "README.md",
+            "title": "commodities research desk"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Project overview: The Commodities Research Desk is a synthetic-data agent project. A planner routes a plain-English desk question to research workers, a reviewer checks their findings, and the planner returns a structured brief. LONG/SHORT briefs can be handed to the separate Trader/RiskManager sign-off project. Every model and tool hop is traced. A fixed 15-question eval compares one agent with the multi-agent pipeline [1].\n\nEvaluation question: The eval asks whether the planner, researchers, and reviewer improve answer quality over a single agent on the same fixed 15-question synthetic research set, and what that improvement costs [2].\n\nEvaluation protocol:\n- Data: data/prices.json and data/news.json, fixed to 2026-10-05 through 2026-10-16 [4].\n- Policy: data/policy.md; exact answer key: eval/answers.json [4].\n- Question set: 15 questions in eval/questions.json [4].\n- Modes: \"single\" and \"multi\", using the same model and backend [4]. The multi-agent mode is the planner + researchers + reviewer pipeline; the single mode is one agent [1][2].\n- Repeats: record the count, timestamp, model/backend, prompt revision, and whether handoff was enabled [4].\n- Scoring: policy recommendation, numeric trend/news score, required citations, structured brief quality, and forbidden-source exclusion [4].\n\nStatus: Results are not yet recorded. Where multi-agent helped and where it did not are both marked \"Not measured yet\" [7].",
+        "citations": [
+          {
+            "index": 1,
+            "repo": "research-desk",
+            "path": "README.md",
+            "line_start": 1,
+            "line_end": 3
+          },
+          {
+            "index": 2,
+            "repo": "research-desk",
+            "path": "eval/WRITEUP.md",
+            "line_start": 5,
+            "line_end": 7
+          },
+          {
+            "index": 4,
+            "repo": "research-desk",
+            "path": "eval/WRITEUP.md",
+            "line_start": 9,
+            "line_end": 16
+          },
+          {
+            "index": 7,
+            "repo": "research-desk",
+            "path": "eval/WRITEUP.md",
+            "line_start": 27,
+            "line_end": 39
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 12.002756599802524,
+        "cost_usd": 0.00086918,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 2773
+      },
+      "retrieved": [
+        {
+          "id": "43b40cd75ae5e86827ceadd9f558d6ab827b8ddc",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.698219,
+          "text": "# Commodities Research Desk\nA synthetic-data agent project: a planner routes a plain-English desk question to research workers, a reviewer checks their findings, and the planner returns a structured brief. LONG/SHORT briefs can be handed to the separate Trader/RiskManager sign-off project. Every model and tool hop is traced. The fixed 15-question eval compares one agent with the multi-agent pipeline."
+        },
+        {
+          "id": "74d41dfd7a2c1951af88f96b771dc09840094537",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Question",
+          "line_start": 5,
+          "line_end": 7,
+          "score": 0.665923,
+          "text": "## Question\nDoes the planner + researchers + reviewer improve answer quality over a single agent on the same fixed 15-question synthetic research set, and what does that improvement cost?"
+        },
+        {
+          "id": "5019c91a56cbdfcc09bc828801c1b4727019f79b",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep",
+          "line_start": 1,
+          "line_end": 5,
+          "score": 0.660107,
+          "text": "# Trade Desk Interview Prep\nFor the full interactive question bank, see [Trade Desk Sign-off: the questions they will ask](trade-desk-interview-questions.html).\nThese answers describe the current code, not planned features. That distinction is useful in an interview: explain what works, show the tests, and name the gaps without presenting them as finished."
+        },
+        {
+          "id": "39dc299b5d4e9543bbc942166ae29c601cd23d35",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Protocol",
+          "line_start": 9,
+          "line_end": 16,
+          "score": 0.656052,
+          "text": "## Protocol\n- Data: `data/prices.json` and `data/news.json`, fixed to 2026-10-05 through 2026-10-16.\n- Policy: `data/policy.md`; exact answer key: `eval/answers.json`.\n- Cases: 15 questions in `eval/questions.json`.\n- Modes: `single` and `multi`, using the same model and backend.\n- Repeats: record count, timestamp, model/backend, prompt revision, and whether handoff was enabled.\n- Score: policy recommendation, numeric trend/news score, required citations, structured brief quality, and forbidden-source exclusion."
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.639597,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        },
+        {
+          "id": "7234c77f492ce92ec7a06f7a1b9f245657e4f6ba",
+          "repo": "research-desk",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.621098,
+          "text": "\"\"\"Offline tests for the Research Desk.\"\"\""
+        },
+        {
+          "id": "f8471e0b37177f24089c8306db77271742902a71",
+          "repo": "research-desk",
+          "path": "eval/WRITEUP.md",
+          "title": "Evaluation Write-up > Analysis > Injection behavior",
+          "line_start": 27,
+          "line_end": 39,
+          "score": 0.604381,
+          "text": "## Analysis\n### Where multi-agent helped\nNot measured yet. Compare per-question outcomes and trace evidence; do not infer a benefit from architecture alone.\n### Where multi-agent did not help\nNot measured yet. Compare failure cases, additional calls, and incremental cost against the single-agent baseline.\n### Injection behavior\nThe deterministic tool layer rejects citation of N10 because it is a newsletter and N11 because it falls outside the window. A model-level red-team success rate has not been measured."
+        },
+        {
+          "id": "74aec6d658c838636fe489b0879aea208daafcff",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Would You Build Next?",
+          "line_start": 43,
+          "line_end": 51,
+          "score": 0.599796,
+          "text": "## What Would You Build Next?\n1. Define a schema for every agent turn and validate it before forwarding.\n2. Add a cumulative token budget and loop detection based on repeated states or lack of progress.\n3. Add tracing with per-turn timing and a replayable run ID.\n4. Build 15\u201320 evaluation cases, repeat each against real models, and record task success, turns, cost, latency, and guardrail overrides.\n5. Add a single-agent baseline and compare it on the same cases.\n6. Test prompt injection, malformed/duplicate tool outputs, and tool/backend failure.\n7. Add any missing desk rules, such as notional exposure, to code rather than relying on prompt instructions."
+        }
+      ]
+    },
+    {
+      "id": "multi-02",
+      "type": "multi",
+      "question": "Find both the trade desk's risk-rule specification and its tests for stop-loss and position-limit checks.",
+      "expected": [
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md"
+        },
+        {
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py"
+        }
+      ],
+      "expected_chunks": [
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "title": "risk rules"
+          }
+        ],
+        [
+          {
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "title": "test_loss_over_limit_fails"
+          }
+        ]
+      ],
+      "answer": {
+        "answered": true,
+        "answer": "Risk-rule specification: For a trade with a stop, loss at stop is size * abs(entry - stop_loss), rounded to cents before comparing it with capital * max_loss_pct. A BUY stop must be below entry, a SELL stop must be above entry, and a missing stop is an immediate failure. Scenario limits are fixed at a 2% max loss unless that scenario explicitly says otherwise [7]. The guardrails module checks that a trade does not exceed the maximum position [3]. The test fixture uses DeskLimits(capital=100000, max_position_units=2000, max_loss_pct=0.02) [2].\n\nTests for stop-loss checks: A test confirms a trade with no stop (stop 0) returns only \"no stop-loss\", meaning the other checks are short-circuited [5]. Another confirms a BUY trade of 5000 units with entry 88.5 and stop 88.0 fails with a \"loss at stop\" problem [8].\n\nPosition-limit tests: I couldn't find a dedicated position-limit test in the sources. The only related item is the max_position_units=2000 value in the test fixture [2].",
+        "citations": [
+          {
+            "index": 7,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "PROBLEM.md",
+            "line_start": 30,
+            "line_end": 32
+          },
+          {
+            "index": 3,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "docs/interview-prep.md",
+            "line_start": 27,
+            "line_end": 29
+          },
+          {
+            "index": 2,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 1,
+            "line_end": 6
+          },
+          {
+            "index": 5,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 14,
+            "line_end": 16
+          },
+          {
+            "index": 8,
+            "repo": "two-agent-trader-riskmanger",
+            "path": "tests/test_guardrails.py",
+            "line_start": 24,
+            "line_end": 26
+          }
+        ],
+        "generator": "haiku",
+        "latency_seconds": 12.677735399920493,
+        "cost_usd": 0.00079688,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 2519
+      },
+      "retrieved": [
+        {
+          "id": "546028cc7a17207af7f6d1835db9dc5fbee412bb",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/__init__.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.74464,
+          "text": "\"\"\"Tests for the trader and risk-manager desk.\"\"\""
+        },
+        {
+          "id": "53d7c2927fa5cb1533db32ce7b25e4ed00e290d6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 6,
+          "score": 0.726322,
+          "text": "from desk.guardrails import check_trade\nfrom desk.market import DeskLimits\nfrom desk.verdict import Trade\nLIMITS = DeskLimits(capital=100000, max_position_units=2000, max_loss_pct=0.02)"
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "line_start": 27,
+          "line_end": 29,
+          "score": 0.718968,
+          "text": "## What Is Enforced in Code?\n`desk/guardrails.py` checks that a trade has a stop on the correct side, does not exceed the maximum position, and does not lose more than the configured maximum at the stop. Loss is rounded to cents before comparison. These checks run on approvals only. Notional exposure versus capital is discussed in prompts and may be mentioned by the model, but it is not currently a coded guardrail. I would add a deterministic notional check if that is a desk rule."
+        },
+        {
+          "id": "932c266e733e22e443d410a153bf8e6b1fd4d382",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.718471,
+          "text": "# Trade Desk Sign-off\nA commodities trader and a risk manager negotiate a proposal. The orchestration code owns turn order and stopping; deterministic guardrails make the final decision on whether an approval fits desk limits."
+        },
+        {
+          "id": "b8602f50945f900523bfdb7765e91687bf10afd7",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_no_stop_short_circuits_other_checks",
+          "line_start": 14,
+          "line_end": 16,
+          "score": 0.702575,
+          "text": "def test_no_stop_short_circuits_other_checks():\n    trade = Trade(\"Brent\", \"BUY\", 9000, 88.5, 0)\n    assert check_trade(trade, LIMITS) == [\"no stop-loss\"]"
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.698122,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "line_start": 30,
+          "line_end": 32,
+          "score": 0.694748,
+          "text": "## Risk Rules\nFor a trade with a stop, loss at stop is `size * abs(entry - stop_loss)`, rounded to cents before comparing it with `capital * max_loss_pct`. A BUY stop must be below entry; a SELL stop must be above entry. A missing stop is an immediate failure. Scenario limits are fixed at a 2% max loss unless that scenario explicitly says otherwise."
+        },
+        {
+          "id": "06a49bcde75c6f620b93a46813bddf80f837c388",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_guardrails.py",
+          "title": "test_loss_over_limit_fails",
+          "line_start": 24,
+          "line_end": 26,
+          "score": 0.687734,
+          "text": "def test_loss_over_limit_fails():\n    trade = Trade(\"Brent\", \"BUY\", 5000, 88.5, 88.0)\n    assert any(\"loss at stop\" in problem for problem in check_trade(trade, LIMITS))"
+        }
+      ]
+    },
+    {
+      "id": "negative-01",
+      "type": "negative",
+      "question": "What is the Kubernetes namespace used by the mobile banking production cluster?",
+      "expected": [],
+      "expected_chunks": [],
+      "answer": {
+        "answered": false,
+        "answer": "I couldn't find that in the docs.",
+        "citations": [],
+        "generator": "haiku",
+        "latency_seconds": 9.53199869999662,
+        "cost_usd": 0.00066828,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3726
+      },
+      "retrieved": [
+        {
+          "id": "51eea9f58d244aef9bc87318a5a0193893b96518",
+          "repo": "research-desk",
+          "path": "tests/test_cli_client.py",
+          "title": "test_cli_adapter_maps_named_structured_tool_call",
+          "line_start": 8,
+          "line_end": 28,
+          "score": 0.621134,
+          "text": "def test_cli_adapter_maps_named_structured_tool_call():\n    structured = {\n        \"thought\": \"Need synthetic prices.\",\n        \"call\": {\"tool\": \"get_prices\", \"input\": {\"ticker\": \"GC=F\"}},\n    }\n    completed = type(\"Completed\", (), {\"stdout\": json.dumps({\"structured_output\": structured})})()\n    client = ClaudeCodeClient()\nwith patch(\"research.cli_client.subprocess.run\", return_value=completed) as run:\n        response = client.messages.create(\n            model=\"claude-haiku-5-5\",\n            max_tokens=2000,\n            system=\"Use tools.\",\n            messages=[{\"role\": \"user\", \"content\": \"Call on gold?\"}],\n            tools=[GET_PRICES],\n        )\nassert response.content[0].name == \"get_prices\"\n    assert response.content[0].input == {\"ticker\": \"GC=F\"}\n    assert \"--json-schema\" in run.call_args.args[0]\n    assert \"get_prices\" in run.call_args.kwargs[\"input\"]"
+        },
+        {
+          "id": "5f9587d2b5bd3d57c06efcf168dc7cf32b5b9249",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Architecture and Known Boundaries",
+          "line_start": 36,
+          "line_end": 46,
+          "score": 0.608354,
+          "text": "## Architecture and Known Boundaries\n- `research/tools.py`: synthetic data tools and policy arithmetic.\n- `research/loop.py`: bounded ReAct loop with step, token, and repeated-tool limits; tool errors are returned to the model.\n- `research/single.py`: one-agent baseline.\n- `research/researcher.py`, `research/reviewer.py`, `research/planner.py`: worker, generator-verifier, and orchestrator-worker flow.\n- `research/tracing.py`: parent-linked JSONL spans for model and tool calls, including duration and token/cost fields.\n- `eval/run_eval.py`: fixed 15-case scoring and single-vs-multi metrics.\n- `research/handoff.py`: optional brief handoff to the neighboring Trade Desk project.\nThe current core is a learning prototype. The A-E extensions (human approval interrupt, prompt-injection red team, memory/compaction, remote A2A, and CrewAI comparison) are separate follow-up work, not silently claimed as complete."
+        },
+        {
+          "id": "4e8e0f7e28a1eb38216980e94a819cd8b126c0cc",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_claude_code_client.py",
+          "title": "test_cli_adapter_maps_schema_output_to_tool_use",
+          "line_start": 32,
+          "line_end": 56,
+          "score": 0.597706,
+          "text": "def test_cli_adapter_maps_schema_output_to_tool_use():\n    client = ClaudeCodeClient()\n    trade = {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 88.5,\n        \"stop_loss\": 88.0,\n    }\n    structured = {\"decision\": \"APPROVED\", \"trade\": trade, \"reasons\": [\"Within limits\"]}\n    completed = type(\"Result\", (), {\"stdout\": json.dumps({\"structured_output\": structured})})()\n    request = {\n        \"system\": \"Decide safely.\",\n        \"messages\": [{\"role\": \"user\", \"content\": \"Proposal\"}],\n        \"tools\": [VERDICT_TOOL],\n    }\nwith patch(\"desk.claude_code_client.subprocess.run\", return_value=completed) as run:\n        response = client.messages.create(**request)\nassert response.stop_reason == \"tool_use\"\n    assert response.content[0].name == \"submit_verdict\"\n    assert response.content[0].input == structured\n    command = run.call_args.args[0]\n    assert \"--json-schema\" in command"
+        },
+        {
+          "id": "de4cc47dcc63a27d750888a38f5ed41fcdc2970c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.585212,
+          "text": "from types import SimpleNamespace"
+        },
+        {
+          "id": "562a515753273c1b227fa8600d8341f24a817fb2",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_single_baseline_uses_tools_and_returns_structured_brief",
+          "line_start": 24,
+          "line_end": 34,
+          "score": 0.584272,
+          "text": "# pytest fixtures: tmp_path\ndef test_single_baseline_uses_tools_and_returns_structured_brief(tmp_path):\n    client = FakeClient([\n        tool_reply(\"get_prices\", {\"ticker\": \"GC=F\"}),\n        tool_reply(\"get_news\", {\"ticker\": \"GC=F\"}),\n        tool_reply(\"score_news\", {\"ticker\": \"GC=F\", \"sentiments\": []}),\n        tool_reply(\"finish_brief\", gold_brief()),\n    ])\n    result = run_single(client, \"Call on gold?\", TraceRecorder(path=tmp_path / \"single.jsonl\"), Toolbox())\n    assert result.output == gold_brief()\n    assert result.calls == 4\n    assert result.error is None"
+        },
+        {
+          "id": "6092b229196ebc304594cc90c202aef459023f0f",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "line_start": 60,
+          "line_end": 82,
+          "score": 0.582461,
+          "text": "# pytest fixtures: tmp_path\n        tool_reply(\"finish_research\", finding),\n        tool_reply(\"review_finding\", {\"approved\": True, \"reason\": \"Article labels are supported\"}),\n        tool_reply(\"finish_brief\", {\n            \"ticker\": \"BZ=F\",\n            \"recommendation\": \"LONG\",\n            \"trend_pct\": 99,\n            \"news_score\": 99,\n            \"facts\": [],\n            \"sources\": [],\n            \"ignored_sources\": [],\n            \"summary\": \"synthesis\",\n        }),\n    ])\nresult = run_multi(client, \"Call on Brent?\", TraceRecorder(path=tmp_path / \"multi.jsonl\"))\nassert result.error is None\n    assert result.brief[\"recommendation\"] == \"NO_TRADE\"\n    assert result.brief[\"trend_pct\"] == 0.95\n    assert result.brief[\"news_score\"] == 0\n    assert result.brief[\"sources\"] == finding[\"sources\"]\n    assert result.brief[\"facts\"] == finding[\"facts\"]\n    assert result.usage.calls == 7"
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.581491,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        },
+        {
+          "id": "7c33473c5c2a85f71ab8b0d38355415e6292c6d0",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "make_loop",
+          "line_start": 8,
+          "line_end": 20,
+          "score": 0.575014,
+          "text": "# pytest fixtures: tmp_path, responses\ndef make_loop(tmp_path, responses, **overrides):\n    trace = TraceRecorder(path=tmp_path / \"trace.jsonl\")\n    options = {\n        \"client\": FakeClient(responses),\n        \"toolbox\": Toolbox(),\n        \"agent\": \"test-agent\",\n        \"system_prompt\": \"Use tools and finish.\",\n        \"tools\": [GET_PRICES, FINISH_BRIEF],\n        \"finish_tools\": {\"finish_brief\"},\n        \"trace\": trace,\n    }\n    options.update(overrides)\n    return ReActLoop(**options), trace"
+        }
+      ]
+    },
+    {
+      "id": "negative-02",
+      "type": "negative",
+      "question": "Which employee approved the confidential payroll transfer?",
+      "expected": [],
+      "expected_chunks": [],
+      "answer": {
+        "answered": false,
+        "answer": "I couldn't find that in the docs.",
+        "citations": [],
+        "generator": "haiku",
+        "latency_seconds": 9.870009100064635,
+        "cost_usd": 0.0007112800000000001,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3941
+      },
+      "retrieved": [
+        {
+          "id": "a9736befe0de83c7199f9a64804176196571cb9e",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations",
+          "line_start": 37,
+          "line_end": 60,
+          "score": 0.572294,
+          "text": "# pytest fixtures: tmp_path\ndef test_multi_worker_plan_reviews_and_preserves_approved_citations(tmp_path):\n    finding = {\n        \"ticker\": \"BZ=F\",\n        \"trend_pct\": 0.95,\n        \"trend\": \"flat\",\n        \"news_score\": 0,\n        \"sentiments\": [\n            {\"id\": \"N4\", \"sentiment\": \"bullish\"},\n            {\"id\": \"N5\", \"sentiment\": \"bearish\"},\n            {\"id\": \"N6\", \"sentiment\": \"neutral\"},\n        ],\n        \"recommendation\": \"NO_TRADE\",\n        \"facts\": [\n            {\"text\": \"The pipeline outage was reversed by repairs.\", \"source\": \"N5\"}\n        ],\n        \"sources\": [\"prices:BZ=F\", \"N4\", \"N5\"],\n        \"ignored_sources\": [{\"id\": \"N10\", \"reason\": \"source is not a wire\"}],\n    }\n    client = FakeClient([\n        tool_reply(\"submit_plan\", {\"workers\": [{\"ticker\": \"BZ=F\", \"question\": \"Call on Brent?\"}]}),\n        tool_reply(\"get_prices\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"get_news\", {\"ticker\": \"BZ=F\"}),\n        tool_reply(\"score_news\", {\"ticker\": \"BZ=F\", \"sentiments\": finding[\"sentiments\"]}),\n        tool_reply(\"finish_research\", finding),"
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "line_start": 12,
+          "line_end": 27,
+          "score": 0.562761,
+          "text": "# pytest fixtures: tmp_path, monkeypatch\ndef test_saved_transcript_matches_public_schema(tmp_path, monkeypatch):\n    monkeypatch.chdir(tmp_path)\n    scenario = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]\n    trade = Trade(\"Brent crude oil\", \"BUY\", 100, 88.5, 88.0)\n    outcome = Outcome(scenario, \"APPROVED\", trade, [\"Within limits\"], \"verdict\", False, [])\n    trader = Agent(\"Trader\", \"trader\", FakeClient([]))\n    risk_manager = Agent(\"RiskManager\", \"risk\", FakeClient([]))\n    trader.usage.calls = 1\n    trader.usage.input_tokens = 868\n    trader.usage.output_tokens = 120\n    risk_manager.usage.calls = 1\n    risk_manager.usage.input_tokens = 1933\n    risk_manager.usage.output_tokens = 1100\ntranscript_path = save(outcome, [trader, risk_manager])\n    payload = json.loads(transcript_path.read_text(encoding=\"utf-8\"))"
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "line_start": 12,
+          "line_end": 36,
+          "score": 0.559306,
+          "text": "# pytest fixtures: decision, trade, reasons, input_tokens, output_tokens\ndef verdict_reply(\n    decision=\"APPROVED\",\n    trade=None,\n    reasons=None,\n    input_tokens: int = 10,\n    output_tokens: int = 5,\n):\n    trade = trade or {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 100,\n        \"entry\": 88.5,\n        \"stop_loss\": 88.0,\n    }\n    return SimpleNamespace(\n        content=[\n            SimpleNamespace(\n                type=\"tool_use\",\n                name=\"submit_verdict\",\n                input={\"decision\": decision, \"trade\": trade, \"reasons\": reasons or [\"Within limits\"]},\n            )\n        ],\n        stop_reason=\"tool_use\",\n        usage=SimpleNamespace(input_tokens=input_tokens, output_tokens=output_tokens),\n    )"
+        },
+        {
+          "id": "137f7c7261c89fc4d99a91fe656aa783bac362b6",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_negotiation.py",
+          "title": "test_guardrail_overrides_approval_without_stop",
+          "line_start": 40,
+          "line_end": 55,
+          "score": 0.558855,
+          "text": "def test_guardrail_overrides_approval_without_stop():\n    no_stop = {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 100,\n        \"entry\": 88.5,\n        \"stop_loss\": 0,\n    }\n    trader = Agent(\"Trader\", \"trader\", FakeClient([text_reply(\"proposal\")]))\n    risk = Agent(\"Risk Manager\", \"risk\", FakeClient([verdict_reply(trade=no_stop)]), tools=[VERDICT_TOOL])\noutcome = run_negotiation(trader, risk, SCENARIO, 2)\nassert outcome.decision == \"REJECTED\"\n    assert outcome.overridden_by_guardrail is True\n    assert \"GUARDRAIL: no stop-loss\" in outcome.reasons"
+        },
+        {
+          "id": "932c266e733e22e443d410a153bf8e6b1fd4d382",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off",
+          "line_start": 1,
+          "line_end": 3,
+          "score": 0.55705,
+          "text": "# Trade Desk Sign-off\nA commodities trader and a risk manager negotiate a proposal. The orchestration code owns turn order and stopping; deterministic guardrails make the final decision on whether an approval fits desk limits."
+        },
+        {
+          "id": "f9c005e8e71587d85027d9dca090d1a84ab0c505",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "docs/interview-prep.md",
+          "title": "Trade Desk Interview Prep > What Is Enforced in Code?",
+          "line_start": 27,
+          "line_end": 29,
+          "score": 0.546315,
+          "text": "## What Is Enforced in Code?\n`desk/guardrails.py` checks that a trade has a stop on the correct side, does not exceed the maximum position, and does not lose more than the configured maximum at the stop. Loss is rounded to cents before comparison. These checks run on approvals only. Notional exposure versus capital is discussed in prompts and may be mentioned by the model, but it is not currently a coded guardrail. I would add a deterministic notional check if that is a desk rule."
+        },
+        {
+          "id": "2dd5c4ba83ece8c49a8f856faa093e2a01417cfd",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_valid_finding_gets_narrow_llm_review",
+          "line_start": 41,
+          "line_end": 45,
+          "score": 0.543374,
+          "text": "# pytest fixtures: tmp_path\ndef test_valid_finding_gets_narrow_llm_review(tmp_path):\n    client = FakeClient([tool_reply(REVIEW_FINDING[\"name\"], {\"approved\": True, \"reason\": \"Citations support sentiment\"})])\n    result, usage = review_finding(client, valid_gold_finding(), Toolbox(), TraceRecorder(path=tmp_path / \"trace.jsonl\"))\n    assert result[\"approved\"] is True\n    assert usage.calls == 1"
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "line_start": 6,
+          "line_end": 39,
+          "score": 0.542597,
+          "text": "# pytest fixtures: tmp_path\ndef test_long_brief_runs_signoff_and_returns_traceable_outcome(tmp_path):\n    trade = {\n        \"instrument\": \"Gold (XAU/USD)\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 2414.0,\n        \"stop_loss\": 2413.0,\n    }\n    client = FakeClient([\n        reply(\"Buy gold based on the reviewed brief.\", 12, 4),\n        tool_reply(\"submit_verdict\", {\n            \"decision\": \"APPROVED\",\n            \"trade\": trade,\n            \"reasons\": [\"Within sign-off limits\"],\n        }, 20, 8),\n    ])\n    brief = {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Gold trend is up\", \"source\": \"prices:GC=F\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG.\",\n    }\nresult = handoff_brief(client, brief, TraceRecorder(path=tmp_path / \"trace.jsonl\"))\nassert result[\"decision\"] == \"APPROVED\"\n    assert result[\"ended_by\"] == \"verdict\"\n    assert result[\"usage\"][\"Trader\"][\"calls\"] == 1\n    assert result[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert len(result[\"turns\"]) == 2"
+        }
+      ]
+    },
+    {
+      "id": "negative-03",
+      "type": "negative",
+      "question": "What is the password for the external vendor account?",
+      "expected": [],
+      "expected_chunks": [],
+      "answer": {
+        "answered": false,
+        "answer": "I couldn't find that in the docs.",
+        "citations": [],
+        "generator": "haiku",
+        "latency_seconds": 11.407720000017434,
+        "cost_usd": 0.0007492800000000002,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3861
+      },
+      "retrieved": [
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "line_start": 6,
+          "line_end": 39,
+          "score": 0.600843,
+          "text": "# pytest fixtures: tmp_path\ndef test_long_brief_runs_signoff_and_returns_traceable_outcome(tmp_path):\n    trade = {\n        \"instrument\": \"Gold (XAU/USD)\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 2414.0,\n        \"stop_loss\": 2413.0,\n    }\n    client = FakeClient([\n        reply(\"Buy gold based on the reviewed brief.\", 12, 4),\n        tool_reply(\"submit_verdict\", {\n            \"decision\": \"APPROVED\",\n            \"trade\": trade,\n            \"reasons\": [\"Within sign-off limits\"],\n        }, 20, 8),\n    ])\n    brief = {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Gold trend is up\", \"source\": \"prices:GC=F\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG.\",\n    }\nresult = handoff_brief(client, brief, TraceRecorder(path=tmp_path / \"trace.jsonl\"))\nassert result[\"decision\"] == \"APPROVED\"\n    assert result[\"ended_by\"] == \"verdict\"\n    assert result[\"usage\"][\"Trader\"][\"calls\"] == 1\n    assert result[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert len(result[\"turns\"]) == 2"
+        },
+        {
+          "id": "38fd8b6c67c36f1d5ef5b388e2d97afb40f72d56",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Setup",
+          "line_start": 5,
+          "line_end": 17,
+          "score": 0.582074,
+          "text": "## Setup\nPython 3.12 is the target in the project brief. This machine currently has Python 3.14.8 only, so the local venv uses 3.14 while the code targets 3.12-compatible syntax.\n```powershell\npy -3.12 -m venv .venv\n.venv\\Scripts\\Activate.ps1\npython -m pip install -r requirements.txt\npython -m pip install -e ..\\two-agent-trader-riskmanger\nCopy-Item .env.example .env\n```\nIf Python 3.12 is unavailable, create the venv with an installed interpreter. Add your own `ANTHROPIC_API_KEY` to `.env`; never commit it. For this workspace the environment is already at `.venv`."
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "line_start": 29,
+          "line_end": 37,
+          "score": 0.577818,
+          "text": "# pytest fixtures: tmp_path, monkeypatch\nassert payload[\"outcome\"][\"scenario\"] == \"oil_spike\"\n    assert payload[\"outcome\"][\"trade\"][\"size\"] == 100\n    assert payload[\"usage\"][\"Trader\"] == {\n        \"calls\": 1,\n        \"input_tokens\": 868,\n        \"output_tokens\": 120,\n    }\n    assert payload[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert payload[\"total_cost_usd\"] == 0.0008901"
+        },
+        {
+          "id": "9da83f3dd5151fa64b4a275363cd862d83056687",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Local Setup",
+          "line_start": 34,
+          "line_end": 36,
+          "score": 0.57013,
+          "text": "## Local Setup\nCreate `.venv`, install `requirements.txt`, and copy `.env.example` to `.env` only if using an API key. Do not commit credentials or generated transcripts. See the three HTML documents in `docs/` for the architecture, study sequence, and personal-device setup notes."
+        },
+        {
+          "id": "786d7ae76861582d678b966a57e92f9d502ef936",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "test_code_review_rejects_injection_source_before_llm_call",
+          "line_start": 30,
+          "line_end": 38,
+          "score": 0.567497,
+          "text": "# pytest fixtures: tmp_path\ndef test_code_review_rejects_injection_source_before_llm_call(tmp_path):\n    finding = valid_gold_finding()\n    finding[\"sources\"].append(\"N10\")\n    client = FakeClient([])\n    result, usage = review_finding(client, finding, Toolbox(), TraceRecorder(path=tmp_path / \"trace.jsonl\"))\n    assert result[\"approved\"] is False\n    assert \"sources_valid\" in result[\"reason\"]\n    assert client.requests == []\n    assert usage.calls == 0"
+        },
+        {
+          "id": "b0670e5b7136cf80f1bef190bb1b26dd11be8aad",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "line_start": 12,
+          "line_end": 27,
+          "score": 0.566214,
+          "text": "# pytest fixtures: tmp_path, monkeypatch\ndef test_saved_transcript_matches_public_schema(tmp_path, monkeypatch):\n    monkeypatch.chdir(tmp_path)\n    scenario = load_scenarios(Path(__file__).parents[1] / \"scenarios.json\")[\"oil_spike\"]\n    trade = Trade(\"Brent crude oil\", \"BUY\", 100, 88.5, 88.0)\n    outcome = Outcome(scenario, \"APPROVED\", trade, [\"Within limits\"], \"verdict\", False, [])\n    trader = Agent(\"Trader\", \"trader\", FakeClient([]))\n    risk_manager = Agent(\"RiskManager\", \"risk\", FakeClient([]))\n    trader.usage.calls = 1\n    trader.usage.input_tokens = 868\n    trader.usage.output_tokens = 120\n    risk_manager.usage.calls = 1\n    risk_manager.usage.input_tokens = 1933\n    risk_manager.usage.output_tokens = 1100\ntranscript_path = save(outcome, [trader, risk_manager])\n    payload = json.loads(transcript_path.read_text(encoding=\"utf-8\"))"
+        },
+        {
+          "id": "2e98e8a15f206aeec7f27e5dc72e1912c6d440f5",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/fakes.py",
+          "title": "verdict_reply",
+          "line_start": 12,
+          "line_end": 36,
+          "score": 0.562586,
+          "text": "# pytest fixtures: decision, trade, reasons, input_tokens, output_tokens\ndef verdict_reply(\n    decision=\"APPROVED\",\n    trade=None,\n    reasons=None,\n    input_tokens: int = 10,\n    output_tokens: int = 5,\n):\n    trade = trade or {\n        \"instrument\": \"Brent crude oil\",\n        \"direction\": \"BUY\",\n        \"size\": 100,\n        \"entry\": 88.5,\n        \"stop_loss\": 88.0,\n    }\n    return SimpleNamespace(\n        content=[\n            SimpleNamespace(\n                type=\"tool_use\",\n                name=\"submit_verdict\",\n                input={\"decision\": decision, \"trade\": trade, \"reasons\": reasons or [\"Within limits\"]},\n            )\n        ],\n        stop_reason=\"tool_use\",\n        usage=SimpleNamespace(input_tokens=input_tokens, output_tokens=output_tokens),\n    )"
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "line_start": 18,
+          "line_end": 32,
+          "score": 0.561994,
+          "text": "## Run\n```powershell\npython main.py --list\npython main.py\npython main.py --scenario gold_calm --max-turns 6\npython main.py --all\npython main.py --live\npython main.py --engine langgraph\npython main.py --backend claude-code\n```\nOn macOS/Linux, use `.venv/bin/python` instead of `python` and `.venv/bin/pip` instead of `python -m pip`. `--live` tries Yahoo Finance and falls back to the scenario price if no quote is available. `--engine langgraph` uses the same agents and coded finish logic as the default loop. Run tests without an API key with `python -m pytest -q`.\nRead [PROBLEM.md](PROBLEM.md) for the acceptance criteria. The browser-readable guides are [the architecture overview](docs/trade-desk-architecture.html), [the detailed SVG architecture diagrams](docs/trade-desk-architecture-diagrams.html), [the study plan](docs/trade-desk-signoff.html), [personal laptop practice](docs/personal-laptop-practice.html), [interview Q&A](docs/interview-prep.md), and the [40-question interview practice guide](docs/trade-desk-interview-questions.html)."
+        }
+      ]
+    },
+    {
+      "id": "negative-04",
+      "type": "negative",
+      "question": "How do I configure a household smart thermostat?",
+      "expected": [],
+      "expected_chunks": [],
+      "answer": {
+        "answered": false,
+        "answer": "I couldn't find that in the docs.",
+        "citations": [],
+        "generator": "haiku",
+        "latency_seconds": 11.00873350026086,
+        "cost_usd": 0.0005632800000000001,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3021
+      },
+      "retrieved": [
+        {
+          "id": "9da83f3dd5151fa64b4a275363cd862d83056687",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Local Setup",
+          "line_start": 34,
+          "line_end": 36,
+          "score": 0.561639,
+          "text": "## Local Setup\nCreate `.venv`, install `requirements.txt`, and copy `.env.example` to `.env` only if using an API key. Do not commit credentials or generated transcripts. See the three HTML documents in `docs/` for the architecture, study sequence, and personal-device setup notes."
+        },
+        {
+          "id": "e45450378c0a29c4cc106c9c607d491d67dcf77d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Setup",
+          "line_start": 5,
+          "line_end": 16,
+          "score": 0.556887,
+          "text": "## Setup\nUse Python 3.11 or newer. In PowerShell, from this folder:\n```powershell\npy -m venv .venv\n.venv\\Scripts\\Activate.ps1\npython -m pip install -r requirements.txt\nCopy-Item .env.example .env\n```\nAdd your personal `ANTHROPIC_API_KEY` to `.env` to use the API backend. Without a key, `--backend auto` uses the Claude Code CLI if it is installed and logged in. Never commit `.env`; it is ignored by Git."
+        },
+        {
+          "id": "7c33473c5c2a85f71ab8b0d38355415e6292c6d0",
+          "repo": "research-desk",
+          "path": "tests/test_loop.py",
+          "title": "make_loop",
+          "line_start": 8,
+          "line_end": 20,
+          "score": 0.550329,
+          "text": "# pytest fixtures: tmp_path, responses\ndef make_loop(tmp_path, responses, **overrides):\n    trace = TraceRecorder(path=tmp_path / \"trace.jsonl\")\n    options = {\n        \"client\": FakeClient(responses),\n        \"toolbox\": Toolbox(),\n        \"agent\": \"test-agent\",\n        \"system_prompt\": \"Use tools and finish.\",\n        \"tools\": [GET_PRICES, FINISH_BRIEF],\n        \"finish_tools\": {\"finish_brief\"},\n        \"trace\": trace,\n    }\n    options.update(overrides)\n    return ReActLoop(**options), trace"
+        },
+        {
+          "id": "38fd8b6c67c36f1d5ef5b388e2d97afb40f72d56",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Setup",
+          "line_start": 5,
+          "line_end": 17,
+          "score": 0.530301,
+          "text": "## Setup\nPython 3.12 is the target in the project brief. This machine currently has Python 3.14.8 only, so the local venv uses 3.14 while the code targets 3.12-compatible syntax.\n```powershell\npy -3.12 -m venv .venv\n.venv\\Scripts\\Activate.ps1\npython -m pip install -r requirements.txt\npython -m pip install -e ..\\two-agent-trader-riskmanger\nCopy-Item .env.example .env\n```\nIf Python 3.12 is unavailable, create the venv with an installed interpreter. Add your own `ANTHROPIC_API_KEY` to `.env`; never commit it. For this workspace the environment is already at `.venv`."
+        },
+        {
+          "id": "ae4b5c1c0b56d50d10805db6d9731aa89fc7688c",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "README.md",
+          "title": "Trade Desk Sign-off > Run",
+          "line_start": 18,
+          "line_end": 32,
+          "score": 0.519282,
+          "text": "## Run\n```powershell\npython main.py --list\npython main.py\npython main.py --scenario gold_calm --max-turns 6\npython main.py --all\npython main.py --live\npython main.py --engine langgraph\npython main.py --backend claude-code\n```\nOn macOS/Linux, use `.venv/bin/python` instead of `python` and `.venv/bin/pip` instead of `python -m pip`. `--live` tries Yahoo Finance and falls back to the scenario price if no quote is available. `--engine langgraph` uses the same agents and coded finish logic as the default loop. Run tests without an API key with `python -m pytest -q`.\nRead [PROBLEM.md](PROBLEM.md) for the acceptance criteria. The browser-readable guides are [the architecture overview](docs/trade-desk-architecture.html), [the detailed SVG architecture diagrams](docs/trade-desk-architecture-diagrams.html), [the study plan](docs/trade-desk-signoff.html), [personal laptop practice](docs/personal-laptop-practice.html), [interview Q&A](docs/interview-prep.md), and the [40-question interview practice guide](docs/trade-desk-interview-questions.html)."
+        },
+        {
+          "id": "ac9370ffe7a44f758790ea0313a363d3a4278fee",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "tests/test_transcript.py",
+          "title": "test_saved_transcript_matches_public_schema",
+          "line_start": 29,
+          "line_end": 37,
+          "score": 0.518946,
+          "text": "# pytest fixtures: tmp_path, monkeypatch\nassert payload[\"outcome\"][\"scenario\"] == \"oil_spike\"\n    assert payload[\"outcome\"][\"trade\"][\"size\"] == 100\n    assert payload[\"usage\"][\"Trader\"] == {\n        \"calls\": 1,\n        \"input_tokens\": 868,\n        \"output_tokens\": 120,\n    }\n    assert payload[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert payload[\"total_cost_usd\"] == 0.0008901"
+        },
+        {
+          "id": "fb13dc4233ef533d381413a5dcd29df2b595092d",
+          "repo": "research-desk",
+          "path": "tests/test_tools.py",
+          "title": "Module header",
+          "line_start": 1,
+          "line_end": 1,
+          "score": 0.514291,
+          "text": "from research.tools import Toolbox, policy_recommendation"
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "line_start": 32,
+          "line_end": 34,
+          "score": 0.51269,
+          "text": "## Fixed Synthetic Answers\nThe policy window is 2026-10-05 through 2026-10-16. Gold is LONG (`+1.43%`, news `+2`); Brent is NO_TRADE (`+0.95%`, news `0`); natural gas is SHORT (`-9.36%`, news `-3`). N10 is a newsletter containing indirect prompt injection and must be ignored because it is not a wire. N11 is a wire but predates the window. Python computes trend, eligibility, score, and recommendation; the model supplies sentiment judgments and prose."
+        }
+      ]
+    },
+    {
+      "id": "negative-05",
+      "type": "negative",
+      "question": "What was the exact closing price of a random stock on a date not covered by these projects?",
+      "expected": [],
+      "expected_chunks": [],
+      "answer": {
+        "answered": false,
+        "answer": "I couldn't find that in the docs.",
+        "citations": [],
+        "generator": "haiku",
+        "latency_seconds": 10.87988459970802,
+        "cost_usd": 0.0007174800000000002,
+        "score": null,
+        "dropped_citations": [],
+        "warnings": [],
+        "prompt_tokens": 3972
+      },
+      "retrieved": [
+        {
+          "id": "cfb918186fef91952f07e5db93b9ba7dbfe942a4",
+          "repo": "research-desk",
+          "path": "data/policy.md",
+          "title": "Desk Research Policy",
+          "line_start": 1,
+          "line_end": 11,
+          "score": 0.64843,
+          "text": "# Desk Research Policy\nToday is 2026-10-16. The research window is the last 10 trading days: 2026-10-05 to 2026-10-16.\n1. Trend: use the 10-day percentage change returned by `get_prices`. It is up above +1.0%, down below -1.0%, and flat otherwise.\n2. News: count only articles dated inside the window and with `source_type` equal to `wire`. Ignore every other article and list it under `ignored_sources` with the reason.\n3. Score each counted article: +1 if bullish for price, -1 if bearish, 0 if mixed or unclear. The news score is the sum.\n4. Recommend LONG if trend is up and news score is above zero. Recommend SHORT if trend is down and news score is below zero. Otherwise recommend NO_TRADE.\n5. Every fact in the final brief cites an article id (for example `N4`) or a price source (for example `prices:BZ=F`).\nThe model may interpret sentiment. Python owns price arithmetic, window/source eligibility, score summation, recommendation arithmetic, and source validation."
+        },
+        {
+          "id": "9ecc8ce7e361f6c17bb8358d90dd0c9145b6e584",
+          "repo": "research-desk",
+          "path": "tests/test_handoff.py",
+          "title": "test_long_brief_runs_signoff_and_returns_traceable_outcome",
+          "line_start": 6,
+          "line_end": 39,
+          "score": 0.632897,
+          "text": "# pytest fixtures: tmp_path\ndef test_long_brief_runs_signoff_and_returns_traceable_outcome(tmp_path):\n    trade = {\n        \"instrument\": \"Gold (XAU/USD)\",\n        \"direction\": \"BUY\",\n        \"size\": 10,\n        \"entry\": 2414.0,\n        \"stop_loss\": 2413.0,\n    }\n    client = FakeClient([\n        reply(\"Buy gold based on the reviewed brief.\", 12, 4),\n        tool_reply(\"submit_verdict\", {\n            \"decision\": \"APPROVED\",\n            \"trade\": trade,\n            \"reasons\": [\"Within sign-off limits\"],\n        }, 20, 8),\n    ])\n    brief = {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Gold trend is up\", \"source\": \"prices:GC=F\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG.\",\n    }\nresult = handoff_brief(client, brief, TraceRecorder(path=tmp_path / \"trace.jsonl\"))\nassert result[\"decision\"] == \"APPROVED\"\n    assert result[\"ended_by\"] == \"verdict\"\n    assert result[\"usage\"][\"Trader\"][\"calls\"] == 1\n    assert result[\"usage\"][\"RiskManager\"][\"calls\"] == 1\n    assert len(result[\"turns\"]) == 2"
+        },
+        {
+          "id": "c104dcbeab669bd5ed9f884a7c85ec18c12b755e",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Acceptance Criteria",
+          "line_start": 5,
+          "line_end": 16,
+          "score": 0.629695,
+          "text": "## Acceptance Criteria\n- `python main.py` runs an `oil_spike` negotiation, prints each turn and a summary, and saves a JSON transcript.\n- `--list`, `--scenario`, `--all`, `--max-turns`, `--effort`, `--engine loop|langgraph`, `--backend auto|api|claude-code`, and `--live` are supported.\n- `auto` uses the Anthropic API when `ANTHROPIC_API_KEY` exists; otherwise it uses an installed, logged-in Claude Code CLI.\n- The trader and risk manager own separate full conversation histories. Each API response is appended as assistant content without discarding non-text blocks.\n- The risk manager can submit a strict `submit_verdict` with `APPROVED`, `APPROVED_WITH_CHANGES`, or `REJECTED`.\n- A refusal or turn-limit exhaustion ends as `REJECTED`. The last risk-manager opportunity receives a final-turn warning.\n- Code overrides any approval with a missing stop, wrong-side stop, oversized position, or loss at stop beyond the desk maximum.\n- Live pricing changes price, recent move, and headline only. The JSON desk limits are never replaced by market data, and failures fall back to the JSON scenario.\n- `loop` and `langgraph` return matching outcome fields for the same scripted replies.\n- `python -m pytest -q` runs without an API key and without network access."
+        },
+        {
+          "id": "2aee79dacefaaca037f67d0d9048284c5e8e25dc",
+          "repo": "research-desk",
+          "path": "tests/test_agents.py",
+          "title": "gold_brief",
+          "line_start": 11,
+          "line_end": 21,
+          "score": 0.628889,
+          "text": "def gold_brief():\n    return {\n        \"ticker\": \"GC=F\",\n        \"recommendation\": \"LONG\",\n        \"trend_pct\": 1.43,\n        \"news_score\": 2,\n        \"facts\": [{\"text\": \"Official-sector buying supports gold.\", \"source\": \"N1\"}],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n        \"summary\": \"Gold is LONG under the fixed policy.\",\n    }"
+        },
+        {
+          "id": "eb1fc7674c72ba56ed775021b267764fd212a39e",
+          "repo": "research-desk",
+          "path": "README.md",
+          "title": "Commodities Research Desk > Fixed Synthetic Answers",
+          "line_start": 32,
+          "line_end": 34,
+          "score": 0.623454,
+          "text": "## Fixed Synthetic Answers\nThe policy window is 2026-10-05 through 2026-10-16. Gold is LONG (`+1.43%`, news `+2`); Brent is NO_TRADE (`+0.95%`, news `0`); natural gas is SHORT (`-9.36%`, news `-3`). N10 is a newsletter containing indirect prompt injection and must be ignored because it is not a wire. N11 is a wire but predates the window. Python computes trend, eligibility, score, and recommendation; the model supplies sentiment judgments and prose."
+        },
+        {
+          "id": "711ed473881d3318006890db31c7ff79e1ac6e7d",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Risk Rules",
+          "line_start": 30,
+          "line_end": 32,
+          "score": 0.615058,
+          "text": "## Risk Rules\nFor a trade with a stop, loss at stop is `size * abs(entry - stop_loss)`, rounded to cents before comparing it with `capital * max_loss_pct`. A BUY stop must be below entry; a SELL stop must be above entry. A missing stop is an immediate failure. Scenario limits are fixed at a 2% max loss unless that scenario explicitly says otherwise."
+        },
+        {
+          "id": "908049861df87db3e24b1d891ebb6e205678e2c5",
+          "repo": "research-desk",
+          "path": "tests/test_reviewer.py",
+          "title": "valid_gold_finding",
+          "line_start": 8,
+          "line_end": 27,
+          "score": 0.614484,
+          "text": "def valid_gold_finding():\n    return {\n        \"ticker\": \"GC=F\",\n        \"trend_pct\": 1.43,\n        \"trend\": \"up\",\n        \"news_score\": 2,\n        \"sentiments\": [\n            {\"id\": \"N1\", \"sentiment\": \"bullish\"},\n            {\"id\": \"N2\", \"sentiment\": \"neutral\"},\n            {\"id\": \"N3\", \"sentiment\": \"bullish\"},\n        ],\n        \"recommendation\": \"LONG\",\n        \"facts\": [\n            {\"text\": \"Gold rose 1.43% over the period.\", \"source\": \"prices:GC=F\"},\n            {\"text\": \"Central bank buying supported prices.\", \"source\": \"N1\"},\n            {\"text\": \"ETF outflows slowed.\", \"source\": \"N3\"},\n        ],\n        \"sources\": [\"prices:GC=F\", \"N1\", \"N3\"],\n        \"ignored_sources\": [],\n    }"
+        },
+        {
+          "id": "05a434894cd43539622308278f821ba8791c6ad0",
+          "repo": "two-agent-trader-riskmanger",
+          "path": "PROBLEM.md",
+          "title": "Trade Desk Sign-off > Project Boundaries",
+          "line_start": 18,
+          "line_end": 28,
+          "score": 0.611134,
+          "text": "## Project Boundaries\n- `desk/market.py`, `scenarios.json`: immutable scenario and limits data.\n- `desk/prompts.py`: role prompts from the scenario.\n- `desk/agent.py`, `desk/claude_code_client.py`: one call per response, history, token accounting, and interchangeable client adapters.\n- `desk/negotiation.py`, `desk/graph.py`: the plain-Python loop and equivalent LangGraph engine.\n- `desk/verdict.py`: strict tool schema and parsed trade/verdict models.\n- `desk/guardrails.py`: deterministic approval checks.\n- `desk/live_prices.py`: optional Yahoo Finance quote adapter.\n- `desk/transcript.py`, `main.py`: console output, CLI, usage summary, and persisted transcripts.\n- `tests/`: offline fake-client behavior and engine parity tests."
+        }
+      ]
+    }
+  ]
+}

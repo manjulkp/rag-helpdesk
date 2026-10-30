@@ -1,0 +1,263 @@
+[
+  {
+    "index": "flat",
+    "params": {},
+    "recall@10": 1.0,
+    "p50_ms": 0.0134,
+    "p95_ms": 0.0434,
+    "build_s": 0.0001,
+    "memory_mb": 0.149
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 16,
+      "efSearch": 16
+    },
+    "recall@10": 0.9813,
+    "p50_ms": 0.0186,
+    "p95_ms": 0.0252,
+    "build_s": 0.0052,
+    "memory_mb": 0.1632
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 16,
+      "efSearch": 32
+    },
+    "recall@10": 0.9984,
+    "p50_ms": 0.0277,
+    "p95_ms": 0.0761,
+    "build_s": 0.0023,
+    "memory_mb": 0.1632
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 16,
+      "efSearch": 64
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0434,
+    "p95_ms": 0.075,
+    "build_s": 0.0024,
+    "memory_mb": 0.1632
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 16,
+      "efSearch": 128
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0643,
+    "p95_ms": 0.145,
+    "build_s": 0.0024,
+    "memory_mb": 0.1632
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 16,
+      "efSearch": 256
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0629,
+    "p95_ms": 0.1145,
+    "build_s": 0.0024,
+    "memory_mb": 0.1632
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 32,
+      "efSearch": 16
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0223,
+    "p95_ms": 0.0944,
+    "build_s": 0.0035,
+    "memory_mb": 0.1755
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 32,
+      "efSearch": 32
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0277,
+    "p95_ms": 0.0772,
+    "build_s": 0.0039,
+    "memory_mb": 0.1755
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 32,
+      "efSearch": 64
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0465,
+    "p95_ms": 0.0949,
+    "build_s": 0.0034,
+    "memory_mb": 0.1755
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 32,
+      "efSearch": 128
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0666,
+    "p95_ms": 0.1011,
+    "build_s": 0.0035,
+    "memory_mb": 0.1755
+  },
+  {
+    "index": "hnsw",
+    "params": {
+      "M": 32,
+      "efSearch": 256
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.07,
+    "p95_ms": 0.1128,
+    "build_s": 0.0038,
+    "memory_mb": 0.1755
+  },
+  {
+    "index": "ivf",
+    "params": {
+      "nlist": 10,
+      "nprobe": 1
+    },
+    "recall@10": 0.3719,
+    "p50_ms": 0.0086,
+    "p95_ms": 0.0317,
+    "build_s": 0.0056,
+    "memory_mb": 0.1653
+  },
+  {
+    "index": "ivf",
+    "params": {
+      "nlist": 10,
+      "nprobe": 2
+    },
+    "recall@10": 0.5813,
+    "p50_ms": 0.01,
+    "p95_ms": 0.0133,
+    "build_s": 0.0028,
+    "memory_mb": 0.1653
+  },
+  {
+    "index": "ivf",
+    "params": {
+      "nlist": 10,
+      "nprobe": 4
+    },
+    "recall@10": 0.8625,
+    "p50_ms": 0.011,
+    "p95_ms": 0.0379,
+    "build_s": 0.002,
+    "memory_mb": 0.1653
+  },
+  {
+    "index": "ivf",
+    "params": {
+      "nlist": 10,
+      "nprobe": 8
+    },
+    "recall@10": 0.9938,
+    "p50_ms": 0.0148,
+    "p95_ms": 0.04,
+    "build_s": 0.0093,
+    "memory_mb": 0.1653
+  },
+  {
+    "index": "ivf",
+    "params": {
+      "nlist": 10,
+      "nprobe": 10
+    },
+    "recall@10": 1.0,
+    "p50_ms": 0.0157,
+    "p95_ms": 0.0653,
+    "build_s": 0.0022,
+    "memory_mb": 0.1653
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 8,
+      "nprobe": 1
+    },
+    "error": "Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\\a\\fa"
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 8,
+      "nprobe": 8
+    },
+    "error": "Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\\a\\fa"
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 8,
+      "nprobe": 32
+    },
+    "error": "Error in void __cdecl faiss::Clustering::train_encoded(__int64,const unsigned char *,const struct faiss::Index *,struct faiss::Index &,const float *) at D:\\a\\fa"
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 4,
+      "nprobe": 1
+    },
+    "recall@10": 0.3656,
+    "p50_ms": 0.0137,
+    "p95_ms": 0.018,
+    "build_s": 0.0693,
+    "memory_mb": 0.0433
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 4,
+      "nprobe": 8
+    },
+    "recall@10": 0.75,
+    "p50_ms": 0.0264,
+    "p95_ms": 0.0307,
+    "build_s": 0.0743,
+    "memory_mb": 0.0433
+  },
+  {
+    "index": "ivf-pq",
+    "params": {
+      "nlist": 10,
+      "m": 48,
+      "nbits": 4,
+      "nprobe": 32
+    },
+    "recall@10": 0.75,
+    "p50_ms": 0.0283,
+    "p95_ms": 0.0407,
+    "build_s": 0.0417,
+    "memory_mb": 0.0433
+  }
+]

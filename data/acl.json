@@ -1,0 +1,12 @@
+{
+  "groups": {
+    "research": ["research-desk"],
+    "trading": ["two-agent-trader-riskmanger"],
+    "admin": "*"
+  },
+  "users": {
+    "rd-analyst": {"groups": ["research"]},
+    "td-risk": {"groups": ["trading"]},
+    "admin": {"groups": ["admin"]}
+  }
+}

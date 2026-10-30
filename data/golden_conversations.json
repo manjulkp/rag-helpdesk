@@ -1,0 +1,171 @@
+[
+  {
+    "id": "pronoun-01",
+    "type": "pronoun",
+    "turns": [
+      {"question": "How does the trade desk decide whether a trade's loss at the stop is too big?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Risk Rules"}]]},
+      {"question": "Does it get rounded before the comparison?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Risk Rules"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py", "title": "test_float_trap_is_rounded_to_cents"}]]}
+    ]
+  },
+  {
+    "id": "pronoun-02",
+    "type": "pronoun",
+    "turns": [
+      {"question": "What does the research agent loop do when the model repeats the same tool call?",
+       "expected": [{"repo": "research-desk", "path": "tests/test_loop.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_loop.py", "title": "test_loop_reports_repeated_tool_call_as_error_result"}]]},
+      {"question": "What other limits does it enforce?",
+       "expected": [{"repo": "research-desk", "path": "README.md"},
+                    {"repo": "research-desk", "path": "tests/test_loop.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "README.md", "title": "Architecture and Known Boundaries"},
+                          {"repo": "research-desk", "path": "tests/test_loop.py", "title": "test_loop_stops_at_token_budget"}]]}
+    ]
+  },
+  {
+    "id": "pronoun-03",
+    "type": "pronoun",
+    "turns": [
+      {"question": "How do the trader and risk manager agents exchange messages?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md", "title": "How Do the Agents Communicate?"}]]},
+      {"question": "What stops their conversation from growing forever?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md", "title": "What Stops the Context From Growing Forever?"}]]},
+      {"question": "And what happens if they never agree?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "tests/test_negotiation.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md", "title": "What Happens When the Agents Disagree?"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "tests/test_negotiation.py", "title": "test_turn_limit_rejects_and_adds_final_turn_note"}]]}
+    ]
+  },
+  {
+    "id": "ellipsis-01",
+    "type": "ellipsis",
+    "turns": [
+      {"question": "Which tests check that prompt-injection sources cannot be cited in the research desk?",
+       "expected": [{"repo": "research-desk", "path": "tests/test_tools.py"},
+                    {"repo": "research-desk", "path": "tests/test_reviewer.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_tools.py", "title": "test_injection_and_out_of_window_sources_cannot_be_cited"},
+                          {"repo": "research-desk", "path": "tests/test_reviewer.py", "title": "test_code_review_rejects_injection_source_before_llm_call"}]]},
+      {"question": "And in the trade desk?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "docs/interview-prep.md", "title": "Prompt Injection"}]]}
+    ]
+  },
+  {
+    "id": "ellipsis-02",
+    "type": "ellipsis",
+    "turns": [
+      {"question": "How do I set up the Python environment for the research desk?",
+       "expected": [{"repo": "research-desk", "path": "README.md"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "README.md", "title": "Setup"}]]},
+      {"question": "And for the trade desk?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "README.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Setup"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Local Setup"}]]}
+    ]
+  },
+  {
+    "id": "drilldown-01",
+    "type": "drilldown",
+    "turns": [
+      {"question": "How does the risk manager submit its verdict, and which verdicts are allowed?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "README.md"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "PROBLEM.md", "title": "Acceptance Criteria"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Architecture"}]]},
+      {"question": "Which test checks that code overrides an approval without a stop?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_negotiation.py"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "tests/test_negotiation.py", "title": "test_guardrail_overrides_approval_without_stop"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py", "title": "test_no_stop_short_circuits_other_checks"}]]}
+    ]
+  },
+  {
+    "id": "drilldown-02",
+    "type": "drilldown",
+    "turns": [
+      {"question": "What does the research desk's evaluation compare?",
+       "expected": [{"repo": "research-desk", "path": "eval/WRITEUP.md"},
+                    {"repo": "research-desk", "path": "README.md"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "eval/WRITEUP.md", "title": "Question"},
+                          {"repo": "research-desk", "path": "eval/WRITEUP.md", "title": "Protocol"},
+                          {"repo": "research-desk", "path": "README.md", "title": "Commodities Research Desk"}]]},
+      {"question": "Which test checks how it scores a brief?",
+       "expected": [{"repo": "research-desk", "path": "tests/test_scoring.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_scoring.py", "title": "test_exact_answer_scores_fully_and_injection_is_detected"}]]}
+    ]
+  },
+  {
+    "id": "switch-01",
+    "type": "topic_switch",
+    "turns": [
+      {"question": "How does the trade desk use live prices?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "README.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "tests/test_live_prices.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Run"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Architecture"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "tests/test_live_prices.py", "title": "test_live_quote_replaces_market_fields_but_keeps_limits"}]]},
+      {"question": "How is the research desk's news score turned into a recommendation?",
+       "expected": [{"repo": "research-desk", "path": "data/policy.md"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "data/policy.md", "title": "Desk Research Policy"}]]}
+    ]
+  },
+  {
+    "id": "switch-02",
+    "type": "topic_switch",
+    "turns": [
+      {"question": "Which tests cover the trade desk's risk guardrails?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "tests/test_guardrails.py", "title": "test_"}]]},
+      {"question": "What are the fixed synthetic answers for gold, Brent and natural gas?",
+       "expected": [{"repo": "research-desk", "path": "README.md"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "README.md", "title": "Fixed Synthetic Answers"}]]}
+    ]
+  },
+  {
+    "id": "correction-01",
+    "type": "correction",
+    "turns": [
+      {"question": "How is the trade desk's Claude Code CLI adapter tested?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "tests/test_claude_code_client.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "tests/test_claude_code_client.py", "title": "test_cli_adapter"}]]},
+      {"question": "No, I meant the research desk's CLI adapter, not the trade desk's.",
+       "expected": [{"repo": "research-desk", "path": "tests/test_cli_client.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_cli_client.py", "title": "test_cli_adapter_maps_named_structured_tool_call"}]]}
+    ]
+  },
+  {
+    "id": "correction-02",
+    "type": "correction",
+    "turns": [
+      {"question": "How is the research desk's reviewer tested?",
+       "expected": [{"repo": "research-desk", "path": "tests/test_reviewer.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_reviewer.py", "title": "test_"}]]},
+      {"question": "No, I meant the multi-worker planner, not the reviewer.",
+       "expected": [{"repo": "research-desk", "path": "tests/test_agents.py"}],
+       "answer_chunks": [[{"repo": "research-desk", "path": "tests/test_agents.py", "title": "test_multi_worker_plan_reviews_and_preserves_approved_citations"}]]}
+    ]
+  },
+  {
+    "id": "unanswerable-01",
+    "type": "unanswerable",
+    "turns": [
+      {"question": "How does the trade desk get live market quotes?",
+       "expected": [{"repo": "two-agent-trader-riskmanger", "path": "README.md"},
+                    {"repo": "two-agent-trader-riskmanger", "path": "tests/test_live_prices.py"}],
+       "answer_chunks": [[{"repo": "two-agent-trader-riskmanger", "path": "README.md", "title": "Run"},
+                          {"repo": "two-agent-trader-riskmanger", "path": "tests/test_live_prices.py", "title": "test_live_quote_replaces_market_fields_but_keeps_limits"}]]},
+      {"question": "Which Bloomberg terminal licence does it use for that?",
+       "expected": [],
+       "answer_chunks": []}
+    ]
+  }
+]
